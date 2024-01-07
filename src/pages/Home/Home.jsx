@@ -1,9 +1,11 @@
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router";
-import { Web5Context } from "../../store/web5-context";
+import Map from "../../components/Map/Map";
 
 const Home = () => {
-  return <div>Home page</div>;
+  return (
+    <div>
+      <Map />;
+    </div>
+  );
 };
 
 export default Home;
