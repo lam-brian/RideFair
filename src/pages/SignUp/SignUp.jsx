@@ -8,17 +8,7 @@ const SignUp = () => {
   const web5Ctx = useContext(Web5Context);
 
   const createUserRecord = async (user) => {
-    // const { records } = await web5Ctx.web5Instance.dwn.records.query({
-    //   from: web5Ctx.userDid,
-    //   filter: {
-    //     schema: "https://schema.org/Playlist",
-    //     dataFormat: "application/json",
-    //   },
-    // });
-
-    // console.log(records);
-
-    const { web5, userDid } = web5Ctx.web5Object;
+    const { web5, userDid } = web5Ctx.web5Instance;
     const { record } = await web5.dwn.records.create({
       data: {
         firstName: user.firstName,

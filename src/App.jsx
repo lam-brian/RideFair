@@ -1,6 +1,5 @@
-import { useEffect, useContext, useState } from "react";
+import { useContext } from "react";
 import { Web5Context } from "./store/web5-context";
-import { Web5 } from "@web5/api/browser";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -29,43 +28,10 @@ const authRoutes = createRoutesFromElements(
 );
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const web5Ctx = useContext(Web5Context);
   let usedRoutes;
 
-  useEffect(() => {
-    const initWeb5 = async () => {
-      const { web5, did: userDid } = await Web5.connect({
-        sync: "5s",
-        techPreview: {
-          dwnEndpoints: ["http://localhost:3000"],
-        },
-      });
-
-      const { records } = await web5.dwn.records.query({
-        message: {
-          filter: {
-            schema: "http://ridefair.com/user",
-          },
-        },
-      });
-
-      if (records.length) {
-        const data = await records.at(-1).data.json();
-        console.log(data);
-        web5Ctx.initUser(data);
-        setIsLoggedIn(true);
-      }
-
-      web5Ctx.initWeb5({
-        web5,
-        userDid,
-      });
-    };
-    initWeb5();
-  }, []);
-
-  if (isLoggedIn) {
+  if (web5Ctx.user) {
     usedRoutes = authRoutes;
   } else {
     usedRoutes = routes;
