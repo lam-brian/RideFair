@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { Web5Context } from "../../store/web5-context";
 
 const Home = () => {
-  return <div>hello world</div>;
+  return <div>Home page</div>;
 };
 
 export default Home;

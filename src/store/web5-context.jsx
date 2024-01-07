@@ -2,8 +2,12 @@ import { useEffect, useState, createContext } from "react";
 import { Web5 } from "@web5/api/browser";
 
 export const Web5Context = createContext({
-  web5Instance: {},
+  web5Instance: {
+    web5: {},
+    userDid: "",
+  },
   user: {},
+  initUser: () => {},
 });
 
 const Web5Provider = ({ children }) => {
@@ -46,6 +50,9 @@ const Web5Provider = ({ children }) => {
       value={{
         web5Instance,
         user,
+        initUser: (user) => {
+          setUser(user);
+        },
       }}
     >
       {children}
