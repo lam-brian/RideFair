@@ -1,0 +1,63 @@
+{
+  "protocol": "https://rideFair.com",
+  "published": true,
+  "types": {
+    "users": {
+      "schema": "https://rideFair.com/schemas/users.json",
+      "dataFormats": ["application/json"]
+    },
+    "ridePool": {
+      "schema": "https://rideFair.com/schemas/ridePool.json",
+      "dataFormats": ["application/json"]
+    },
+    "pairing": {
+      "schema": "https://rideFair.com/schemas/pairing.json",
+      "dataFormats": ["application/json"]
+    },
+    "rider": {
+      "schema": "https://rideFair.com/schemas/rider.json",
+      "dataFormats": ["application/json"]
+    },
+    "driver": {
+      "schema": "https://rideFair.com/schemas/driver.json",
+      "dataFormats": ["application/json"]
+    }
+  },
+  "structure": {
+    "users": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "read"
+        },
+        {
+          "who": "anyone",
+          "can": "write"
+        },
+        {
+          "who": "anyone",
+          "can": "query"
+        }
+      ]
+    },
+    "ridePool": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "read"
+        },
+        {
+          "who": "anyone",
+          "can": "write"
+        },
+        {
+          "who": "anyone",
+          "can": "query"
+        }
+      ],
+      "pairing": {
+        "$actions": ["who"]
+      }
+    }
+  }
+}

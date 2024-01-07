@@ -1,14 +1,47 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Web5Context } from "../../store/web5-context";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const web5Ctx = useContext(Web5Context);
+
+  const createUserRecord = async (user) => {
+    // const { records } = await web5Ctx.web5Instance.dwn.records.query({
+    //   from: web5Ctx.userDid,
+    //   filter: {
+    //     schema: "https://schema.org/Playlist",
+    //     dataFormat: "application/json",
+    //   },
+    // });
+
+    // console.log(records);
+
+    const { web5, userDid } = web5Ctx.web5Object;
+    const { record } = await web5.dwn.records.create({
+      data: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
+
+      message: {
+        schema: "http://ridefair.com/user",
+        dataFormat: "application/json",
+      },
+    });
+    const { status } = await record.send(userDid);
+    console.log(status);
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
 
     console.log(firstName, lastName);
+    createUserRecord({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+    });
   };
 
   return (
