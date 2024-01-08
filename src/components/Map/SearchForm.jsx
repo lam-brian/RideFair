@@ -20,7 +20,7 @@ const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
 
   return (
     <>
-      <h1 className="text-2xl mb-3">Hello, {user.firstName}</h1>
+      <h1 className="text-xl mb-3 font-bold">Hello, {user.firstName}</h1>
 
       <form onSubmit={handleSearching}>
         {isExpanded && (

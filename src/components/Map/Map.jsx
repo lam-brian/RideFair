@@ -63,7 +63,11 @@ const Map = ({ locations }) => {
   }, [lng, lat, zoom, pickupCoords, destinationCoords]);
 
   useEffect(() => {
-    if (!locations) return;
+    if (!locations) {
+      setPickupCoords();
+      setDestinationCoords();
+      return;
+    }
 
     const setCoords = async () => {
       try {

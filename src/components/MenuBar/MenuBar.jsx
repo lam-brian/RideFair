@@ -6,7 +6,7 @@ const MenuBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="flex justify-center items-center w-full h-16">
+    <div className="flex justify-center items-center w-full h-16 text-neutrals-300">
       <NavLink
         to="/"
         className={({ isActive }) =>

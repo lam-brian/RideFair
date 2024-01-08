@@ -31,3 +31,7 @@ html {
 .menuButton {
   @apply flex-1 h-full flex flex-col items-center justify-center;
 }
+
+.dot {
+  @apply w-2 h-2 rounded-full bg-white inline-block;
+}
