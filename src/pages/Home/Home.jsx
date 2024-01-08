@@ -71,7 +71,7 @@ const Home = () => {
   if (isExpanded) {
     tabHeight = "h-screen";
   } else if (rideOptions.length && !drivers.length) {
-    tabHeight = "h-3/5";
+    tabHeight = "h-4/5";
   } else {
     tabHeight = "h-1/2";
   }

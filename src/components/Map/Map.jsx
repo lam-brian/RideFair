@@ -93,7 +93,7 @@ const Map = ({ locations }) => {
     setCoords();
   }, [locations]);
 
-  return <div id="map" className="w-full h-5/6" />;
+  return <div id="map" className="w-full h-3/5" />;
 };
 
 export default Map;
