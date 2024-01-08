@@ -9,7 +9,9 @@ const Searching = () => {
 
   return (
     <>
-      <h1 className="self-center text-xl mb-3">Finding you options</h1>
+      <h1 className="self-center text-xl mb-3 font-bold">
+        Finding you options
+      </h1>
 
       <ul className="flex flex-col mb-auto gap-4">{renderedList}</ul>
     </>

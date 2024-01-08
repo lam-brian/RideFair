@@ -4,9 +4,16 @@ import carCarpool from "../../assets/car-carpool.svg";
 import carLuxury from "../../assets/car-luxury.svg";
 import visaIcon from "../../assets/visa.svg";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
-const RideOptions = ({ options }) => {
-  console.log(options);
+const RideOptions = ({ options, handleSelectRide }) => {
+  const [selectedRide, setSelectedRide] = useState();
+
+  const confirmRide = () => {
+    if (!selectedRide) return;
+
+    handleSelectRide(selectedRide);
+  };
 
   const renderedOptions = options.map((option, i) => {
     let imgSrc;
@@ -27,7 +34,12 @@ const RideOptions = ({ options }) => {
 
     return (
       <li key={i} className="flex-1">
-        <button className="w-full flex gap-4 rounded-lg px-2 py-1 hover:bg-blue-200">
+        <button
+          onClick={() => setSelectedRide(option)}
+          className={`w-full flex gap-4 rounded-lg px-2 py-1 hover:bg-blue-400 ${
+            selectedRide === option ? "bg-blue-400" : ""
+          }`}
+        >
           <div className="w-12 h-12 flex items-center justify-center">
             <img src={imgSrc} alt={option.type + " Car"} />
           </div>
@@ -62,7 +74,10 @@ const RideOptions = ({ options }) => {
         </p>
         <ChevronDownIcon className="w-5 ml-auto" />
       </div>
-      <button className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg">
+      <button
+        onClick={confirmRide}
+        className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg"
+      >
         Confirm standard ride
       </button>
     </>
