@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import safeguardImg from "/src/assets/safeguard-check.svg";
 import moneyImg from "/src/assets/money.svg";
 import pointerImg from "/src/assets/pointer-mouse.svg";
@@ -57,12 +58,13 @@ const Onboarding = () => {
         ))}
       </div>
 
-      <button
-        className="text-base font-semibold bg-blue-200 text-blue-900 py-4 mt-8 w-full rounded-lg"
+      <NavLink
+        to={"/signup"}
+        className="text-base font-semibold bg-blue-200 text-blue-900 py-4 mt-8 w-full rounded-lg text-center"
         onClick={() => console.log("Sign Up Clicked")}
       >
         Sign Up
-      </button>
+      </NavLink>
     </div>
   );
 };

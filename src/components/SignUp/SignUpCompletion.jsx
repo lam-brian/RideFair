@@ -23,7 +23,7 @@ const SignUpCompletion = ({ handleWriteUser }) => {
         </div>
 
         <div className="flex items-center bg-blue-400 text-white text-lg rounded-full p-3 m-4 w-full">
-          <div className="flex items-center">
+          <div className="flex items-center justify-between w-full">
             <input
               type="text"
               value={userDid}
@@ -40,7 +40,7 @@ const SignUpCompletion = ({ handleWriteUser }) => {
         </div>
 
         <p className="text-neutrals-50 text-center">
-          Your DID can be found in your profile settings.
+          Your DID can be found in your profile settings.{" "}
           <a
             href="https://developer.tbd.website/docs/web5/learn/decentralized-identifiers"
             target="_blank"

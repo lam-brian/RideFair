@@ -19,7 +19,7 @@ const routes = createRoutesFromElements(
       path="/"
       element={
         <Wrapper>
-          <Navigate to="/signup" />
+          <Navigate to="/onboarding" />
         </Wrapper>
       }
     />
@@ -73,13 +73,13 @@ const authRoutes = createRoutesFromElements(
 
 const App = () => {
   const web5Ctx = useContext(Web5Context);
-  let usedRoutes = routes;
+  let usedRoutes;
 
-  // if (web5Ctx.user) {
-  //   usedRoutes = authRoutes;
-  // } else {
-  //   usedRoutes = routes;
-  // }
+  if (web5Ctx.user) {
+    usedRoutes = authRoutes;
+  } else {
+    usedRoutes = routes;
+  }
 
   const router = createBrowserRouter(usedRoutes);
 

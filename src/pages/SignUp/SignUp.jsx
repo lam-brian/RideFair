@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { Web5Context } from "../../store/web5-context";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import SignUpForm from "../../components/SignUp/SignUpForm";
@@ -28,14 +29,17 @@ const SignUp = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-blue-900 px-6'>
-      <div className="relative w-full text-center mt-8 mb-4">
+    <div className="flex flex-col items-center justify-center h-screen bg-blue-900 px-6">
+      <div className="relative w-full text-center mt-12 mb-6">
         {!isCompleted && (
-          <button className="absolute left-0 bottom-1/2 translate-y-1/2">
+          <NavLink
+            to={"/onboardin"}
+            className="absolute left-0 bottom-1/2 translate-y-1/2"
+          >
             <ChevronLeftIcon className="w-5 h-5 text-neutrals-50" />
-          </button>
+          </NavLink>
         )}
-        <h1 className="text-2xl font-semibold text-neutrals-50 mb-4 mt-8">
+        <h1 className="text-2xl font-semibold text-neutrals-50 ">
           {!isCompleted ? "Sign up" : "Thanks for signing up!"}
         </h1>
       </div>

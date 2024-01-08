@@ -23,16 +23,17 @@ const SignUpForm = ({ handleSetUser }) => {
           id="firstName"
           className="w-full border border-neutrals-300 mt-1 p-4 rounded-lg bg-blue-900 text-white placeholder-neutrals-300::placeholder focus:outline-none"
           value={firstName}
+          placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
         />
-        <label
+        {/* <label
           htmlFor="firstName"
           className={`absolute top-2 left-4 ${
             firstName ? "text-sm text-white" : "text-base text-neutrals-300"
           } ${firstName && "hidden"}`}
         >
           First Name
-        </label>
+        </label> */}
       </div>
       <div className="mb-auto relative">
         <input
@@ -41,15 +42,16 @@ const SignUpForm = ({ handleSetUser }) => {
           className="w-full border border-neutrals-300 mt-1 p-4 rounded-lg bg-blue-900 text-white placeholder-neutrals-300::placeholder focus:outline-none"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          placeholder="Last Name"
         />
-        <label
+        {/* <label
           htmlFor="lastName"
           className={`absolute top-2 left-4 ${
             lastName ? "text-sm text-white" : "text-base text-neutrals-300"
           } ${lastName && "hidden"}`}
         >
           Last Name
-        </label>
+        </label> */}
       </div>
 
       <div>

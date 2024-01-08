@@ -19,9 +19,6 @@ const Web5Provider = ({ children }) => {
       try {
         const { web5, did: userDid } = await Web5.connect({
           sync: "5s",
-          techPreview: {
-            dwnEndpoints: ["http://localhost:3000"],
-          },
         });
 
         setWeb5Instance({

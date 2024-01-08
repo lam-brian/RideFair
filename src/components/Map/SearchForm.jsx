@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Web5Context } from "../../store/web5-context";
 import SearchInput from "./SearchInput";
+import { BookmarkIcon } from "@heroicons/react/24/solid";
 
 const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
   const web5Ctx = useContext(Web5Context);
@@ -51,7 +52,9 @@ const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
       <ul className="flex flex-col mb-auto">
         <li className="flex-1">
           <button className="w-full flex items-center gap-4">
-            <div className="w-9 h-9 rounded-full bg-white"></div>
+            <div className="w-9 h-9 rounded-full bg-neutrals-500 flex items-center justify-center">
+              <BookmarkIcon className="w-5 text-neutrals-100" />
+            </div>
             Saved places
           </button>
         </li>
