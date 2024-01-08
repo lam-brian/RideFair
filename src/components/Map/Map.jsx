@@ -32,7 +32,7 @@ const Map = () => {
     });
   }, [lng, lat, zoom]);
 
-  return <div id="map" className="w-screen h-screen" />;
+  return <div id="map" className="w-full h-5/6" />;
 };
 
 export default Map;

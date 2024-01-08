@@ -15,13 +15,13 @@ export default {
         900: "#151E24",
       },
       neutrals: {
-        50:"#EAEAEA",
+        50: "#EAEAEA",
         100: "#BDBDBD",
         300: "#717171",
         500: "#2B2B2B",
         700: "#1F1F1F",
         900: "#121212",
-      }
+      },
     },
     extend: {}, // Move this line outside of the 'colors' object
   },

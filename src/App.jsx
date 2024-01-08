@@ -11,19 +11,55 @@ import {
 import Home from "./pages/home/Home";
 import Onboarding from "./pages/Onboarding/Onboading";
 import SignUp from "./pages/SignUp/SignUp";
+import Wrapper from "./components/Wrapper/Wrapper";
 
 const routes = createRoutesFromElements(
   <Route>
-    <Route path="/" element={<Navigate to="/signup" />} />
-    <Route path="/onboarding" element={<Onboarding />} />
-    <Route path="/signup" element={<SignUp />} />
+    <Route
+      path="/"
+      element={
+        <Wrapper>
+          <Navigate to="/signup" />
+        </Wrapper>
+      }
+    />
+    <Route
+      path="/onboarding"
+      element={
+        <Wrapper>
+          <Onboarding />
+        </Wrapper>
+      }
+    />
+    <Route
+      path="/signup"
+      element={
+        <Wrapper>
+          <SignUp />
+        </Wrapper>
+      }
+    />
   </Route>
 );
 
 const authRoutes = createRoutesFromElements(
   <Route>
-    <Route path="/" element={<Home />} />
-    <Route path="/*" element={<Navigate to="/" />} />
+    <Route
+      path="/"
+      element={
+        <Wrapper>
+          <Home />
+        </Wrapper>
+      }
+    />
+    <Route
+      path="/*"
+      element={
+        <Wrapper>
+          <Navigate to="/" />
+        </Wrapper>
+      }
+    />
   </Route>
 );
 

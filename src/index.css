@@ -27,3 +27,7 @@ html {
   margin: 0;
   padding: 0;
 }
+
+.menuButton {
+  @apply flex-1 h-full flex flex-col items-center justify-center;
+}
