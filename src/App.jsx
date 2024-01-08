@@ -8,7 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Home from "./pages/home/Home";
+import Home from "./pages/Home/Home";
 import Onboarding from "./pages/Onboarding/Onboading";
 import SignUp from "./pages/SignUp/SignUp";
 import Wrapper from "./components/Wrapper/Wrapper";
@@ -46,6 +46,14 @@ const authRoutes = createRoutesFromElements(
   <Route>
     <Route
       path="/"
+      element={
+        <Wrapper>
+          <Home />
+        </Wrapper>
+      }
+    />
+    <Route
+      path="/activity"
       element={
         <Wrapper>
           <Home />
