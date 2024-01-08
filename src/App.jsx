@@ -73,13 +73,13 @@ const authRoutes = createRoutesFromElements(
 
 const App = () => {
   const web5Ctx = useContext(Web5Context);
-  let usedRoutes;
+  let usedRoutes = routes;
 
-  if (web5Ctx.user) {
-    usedRoutes = authRoutes;
-  } else {
-    usedRoutes = routes;
-  }
+  // if (web5Ctx.user) {
+  //   usedRoutes = authRoutes;
+  // } else {
+  //   usedRoutes = routes;
+  // }
 
   const router = createBrowserRouter(usedRoutes);
 
