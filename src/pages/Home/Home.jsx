@@ -10,6 +10,8 @@ import driverDavid from "../../assets/driver-david.png";
 import driverJohn from "../../assets/driver-john.jpeg";
 import driverRachel from "../../assets/driver-rachel.png";
 import DriverOptions from "../../components/Map/DriverOptions";
+import FinishedTrip from "../../components/Map/FinishedTrip";
+import Payment from "../../components/Map/Payment";
 
 const DUMMY_OPTIONS = [
   { type: "Standard", eta: "1:00PM", distance: "3min away", price: "$10.40" },
@@ -59,6 +61,8 @@ const Home = () => {
   const [rideOptions, setRideOptions] = useState([]);
   const [selectedRide, setSelectedRide] = useState();
   const [drivers, setDrivers] = useState([]);
+  const [selectedDriver, setSelectedDriver] = useState();
+  const [payment, setPayment] = useState();
 
   const submitLocations = (locationObj) => {
     setSubmittedLocations(locationObj);
@@ -119,6 +123,8 @@ const Home = () => {
     setRideOptions([]);
     setSelectedRide();
     setDrivers([]);
+    setSelectedDriver();
+    setPayment();
   };
 
   return (
@@ -163,7 +169,26 @@ const Home = () => {
               }}
             />
           )}
-          {!!drivers.length && <DriverOptions drivers={drivers} />}
+          {!selectedDriver && !!drivers.length && (
+            <DriverOptions
+              drivers={drivers}
+              selectDriver={(driver) => {
+                console.log(driver);
+                setSelectedDriver(driver);
+                setIsExpanded(true);
+              }}
+            />
+          )}
+          {!payment && selectedDriver && (
+            <FinishedTrip
+              driver={selectedDriver}
+              handlePayment={(payment) => {
+                setIsExpanded(false);
+                setPayment(payment);
+              }}
+            />
+          )}
+          {payment && <Payment handleReset={handleReset} />}
           {!drivers.length && !rideOptions.length && <MenuBar />}
         </div>
       </div>

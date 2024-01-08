@@ -1,13 +1,19 @@
 import { useState } from "react";
 
-const DriverOptions = ({ drivers }) => {
+const DriverOptions = ({ drivers, selectDriver }) => {
   const [selectedDriver, setSelectedDriver] = useState();
+
+  const handleRequestDriver = () => {
+    if (!selectedDriver) return;
+
+    selectDriver(selectedDriver);
+  };
 
   const renderedOptions = drivers.map((driver, i) => {
     return (
       <li key={i} className="flex-1">
         <button
-          // onClick={() => setSelectedRide(option)}
+          onClick={() => setSelectedDriver(driver)}
           className={`w-full flex gap-4 rounded-lg px-2 py-1 hover:bg-blue-400 ${
             selectedDriver === driver ? "bg-blue-400" : ""
           }`}
@@ -46,8 +52,11 @@ const DriverOptions = ({ drivers }) => {
 
       <ul className="flex flex-col gap-6 mb-auto">{renderedOptions}</ul>
 
-      <button className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg">
-        Confirm standard ride
+      <button
+        onClick={handleRequestDriver}
+        className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg"
+      >
+        Request driver
       </button>
     </>
   );

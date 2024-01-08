@@ -78,7 +78,7 @@ const RideOptions = ({ options, handleSelectRide }) => {
         onClick={confirmRide}
         className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg"
       >
-        Confirm standard ride
+        Confirm ride
       </button>
     </>
   );
