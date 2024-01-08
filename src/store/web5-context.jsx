@@ -16,30 +16,34 @@ const Web5Provider = ({ children }) => {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { web5, did: userDid } = await Web5.connect({
-        sync: "5s",
-        techPreview: {
-          dwnEndpoints: ["http://localhost:3000"],
-        },
-      });
-
-      setWeb5Instance({
-        web5,
-        userDid,
-      });
-
-      const { records } = await web5.dwn.records.query({
-        message: {
-          filter: {
-            schema: "http://ridefair.com/user",
+      try {
+        const { web5, did: userDid } = await Web5.connect({
+          sync: "5s",
+          techPreview: {
+            dwnEndpoints: ["http://localhost:3000"],
           },
-        },
-      });
+        });
 
-      if (records.length) {
-        const data = await records.at(-1).data.json();
-        console.log(data);
-        setUser(data);
+        setWeb5Instance({
+          web5,
+          userDid,
+        });
+
+        const { records } = await web5.dwn.records.query({
+          message: {
+            filter: {
+              schema: "http://ridefair.com/user",
+            },
+          },
+        });
+
+        if (records.length) {
+          const data = await records.at(-1).data.json();
+          console.log(data);
+          setUser(data);
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
     initWeb5();
