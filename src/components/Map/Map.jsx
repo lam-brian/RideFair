@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_KEY;
 
-const Map = ({ locations }) => {
+const Map = ({ locations, handleFinishedLoading, isFinished }) => {
   const [lng, setLng] = useState(-99.29);
   const [lat, setLat] = useState(39.39);
   const [zoom, setZoom] = useState(3);
@@ -32,6 +32,7 @@ const Map = ({ locations }) => {
     setLng(position.coords.longitude);
     setLat(position.coords.latitude);
     setZoom(16);
+    handleFinishedLoading();
   }, []);
 
   useEffect(() => {
@@ -93,7 +94,9 @@ const Map = ({ locations }) => {
     setCoords();
   }, [locations]);
 
-  return <div id="map" className="w-full h-3/5" />;
+  return (
+    <div id="map" className={`w-full ${isFinished ? "h-3/5" : "h-full"}`} />
+  );
 };
 
 export default Map;

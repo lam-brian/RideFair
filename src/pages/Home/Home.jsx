@@ -63,6 +63,7 @@ const Home = () => {
   const [drivers, setDrivers] = useState([]);
   const [selectedDriver, setSelectedDriver] = useState();
   const [payment, setPayment] = useState();
+  const [mapFinishedLoading, setMapFinishedLoading] = useState(false);
 
   const submitLocations = (locationObj) => {
     setSubmittedLocations(locationObj);
@@ -72,12 +73,16 @@ const Home = () => {
 
   let tabHeight;
 
-  if (isExpanded) {
-    tabHeight = "h-screen";
-  } else if (rideOptions.length && !drivers.length) {
-    tabHeight = "h-4/5";
+  if (!mapFinishedLoading) {
+    tabHeight = "h-7";
   } else {
-    tabHeight = "h-1/2";
+    if (isExpanded) {
+      tabHeight = "h-screen";
+    } else if (rideOptions.length && !drivers.length) {
+      tabHeight = "h-4/5";
+    } else {
+      tabHeight = "h-1/2";
+    }
   }
 
   // Mock for now
@@ -129,7 +134,13 @@ const Home = () => {
 
   return (
     <div className="relative text-white h-screen">
-      <Map locations={submittedLocations} />
+      <Map
+        isFinished={mapFinishedLoading}
+        locations={submittedLocations}
+        handleFinishedLoading={() => {
+          setMapFinishedLoading(true);
+        }}
+      />
       {(!!rideOptions.length || !!drivers.length) && (
         <button
           onClick={handleReset}
@@ -143,7 +154,10 @@ const Home = () => {
       >
         <div
           className="cursor-pointer w-20 h-3 mx-auto mt-3"
-          onClick={() => setIsExpanded((state) => !state)}
+          onClick={() => {
+            if (!mapFinishedLoading) return;
+            setIsExpanded((state) => !state);
+          }}
         >
           <div
             className={`w-20 h-1 ${
@@ -151,46 +165,48 @@ const Home = () => {
             } rounded-lg`}
           ></div>
         </div>
-        <div className="flex-1 p-4 flex flex-col">
-          {!drivers.length && !rideOptions.length && !isSearching && (
-            <SearchForm
-              submitLocations={submitLocations}
-              isExpanded={isExpanded}
-              setIsExpanded={(boolean) => setIsExpanded(boolean)}
-            />
-          )}
-          {isSearching && <Searching />}
-          {!drivers.length && !!rideOptions.length && (
-            <RideOptions
-              options={rideOptions}
-              handleSelectRide={(ride) => {
-                setSelectedRide(ride);
-                retrieveDrivers();
-              }}
-            />
-          )}
-          {!selectedDriver && !!drivers.length && (
-            <DriverOptions
-              drivers={drivers}
-              selectDriver={(driver) => {
-                console.log(driver);
-                setSelectedDriver(driver);
-                setIsExpanded(true);
-              }}
-            />
-          )}
-          {!payment && selectedDriver && (
-            <FinishedTrip
-              driver={selectedDriver}
-              handlePayment={(payment) => {
-                setIsExpanded(false);
-                setPayment(payment);
-              }}
-            />
-          )}
-          {payment && <Payment handleReset={handleReset} />}
-          {!drivers.length && !rideOptions.length && <MenuBar />}
-        </div>
+        {mapFinishedLoading && (
+          <div className="flex-1 p-4 flex flex-col">
+            {!drivers.length && !rideOptions.length && !isSearching && (
+              <SearchForm
+                submitLocations={submitLocations}
+                isExpanded={isExpanded}
+                setIsExpanded={(boolean) => setIsExpanded(boolean)}
+              />
+            )}
+            {isSearching && <Searching />}
+            {!drivers.length && !!rideOptions.length && (
+              <RideOptions
+                options={rideOptions}
+                handleSelectRide={(ride) => {
+                  setSelectedRide(ride);
+                  retrieveDrivers();
+                }}
+              />
+            )}
+            {!selectedDriver && !!drivers.length && (
+              <DriverOptions
+                drivers={drivers}
+                selectDriver={(driver) => {
+                  console.log(driver);
+                  setSelectedDriver(driver);
+                  setIsExpanded(true);
+                }}
+              />
+            )}
+            {!payment && selectedDriver && (
+              <FinishedTrip
+                driver={selectedDriver}
+                handlePayment={(payment) => {
+                  setIsExpanded(false);
+                  setPayment(payment);
+                }}
+              />
+            )}
+            {payment && <Payment handleReset={handleReset} />}
+            {!drivers.length && !rideOptions.length && <MenuBar />}
+          </div>
+        )}
       </div>
     </div>
   );
