@@ -53,7 +53,7 @@ const FinishedTrip = ({ driver, handlePayment }) => {
         <img src={driver.image} alt={driver.name} />
       </div>
       <p className="text-white font-bold text-xl mb-4">
-        How was your trip with David?
+        How was your trip with {driver.name.split(" ")[0]}?
       </p>
       <div className="flex gap-4">{renderedStars}</div>
       <input
