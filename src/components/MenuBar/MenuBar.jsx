@@ -37,7 +37,7 @@ const MenuBar = () => {
           alt=""
           className="w-7 h-7"
         />
-        Activity
+        My Rides
       </NavLink>
       <NavLink
         to="/profile"
