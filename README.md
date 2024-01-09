@@ -6,7 +6,7 @@ This project was submitted to the Web5: Building the Decentralized Web Hackathon
 You can also try out the [live demo](https://ride-fair.netlify.app/) or run it locally.
 1. clone the repository
 2. run ```npm i```
-3. create a .env file and add your own Mapbox access key VITE_MAPBOX_KEY
+3. create a .env file and add your own Mapbox access key: VITE_MAPBOX_KEY
 4. run ```npm run dev```
 
 ## 💡 Inspiration
