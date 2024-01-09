@@ -6,9 +6,9 @@ import SearchForm from "../../components/Map/SearchForm";
 import Searching from "../../components/Map/Searching";
 import RideOptions from "../../components/Map/RideOptions";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
-import driverDavid from "../../assets/driver-david.png";
-import driverJohn from "../../assets/driver-john.jpeg";
-import driverRachel from "../../assets/driver-rachel.png";
+import driver1 from "../../assets/driver1.png";
+import driver2 from "../../assets/driver2.png";
+import driver3 from "../../assets/driver3.png";
 import DriverOptions from "../../components/Map/DriverOptions";
 import FinishedTrip from "../../components/Map/FinishedTrip";
 import Payment from "../../components/Map/Payment";
@@ -26,8 +26,8 @@ const DUMMY_OPTIONS = [
 
 const DUMMY_DRIVERS = [
   {
-    name: "David D.",
-    image: driverDavid,
+    name: "Adewale A.",
+    image: driver1,
     car: "Silver BMW X5",
     distance: "2 mins away",
     rating: "4.9",
@@ -35,8 +35,8 @@ const DUMMY_DRIVERS = [
     bestMatch: true,
   },
   {
-    name: "Rachel R.",
-    image: driverRachel,
+    name: "Ebony L.",
+    image: driver2,
     car: "White Honda Accord",
     distance: "7 mins away",
     rating: "4.9",
@@ -44,8 +44,8 @@ const DUMMY_DRIVERS = [
     bestMatch: false,
   },
   {
-    name: "John J.",
-    image: driverJohn,
+    name: "Daniel B.",
+    image: driver3,
     car: "Red Toyota Camry",
     distance: "10 mins away",
     rating: "4.9",

@@ -19,7 +19,7 @@ const DriverOptions = ({ drivers, selectDriver }) => {
           }`}
         >
           <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
-            <img src={driver.image} alt={driver.name} />
+            <img src={driver.image} alt={driver.name} className="scale-105" />
           </div>
           <div className="flex-1 flex justify-between text-sm">
             <div className="text-start">
