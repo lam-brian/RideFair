@@ -33,7 +33,7 @@ const SignUp = () => {
       <div className="relative w-full text-center mt-12 mb-6">
         {!isCompleted && (
           <NavLink
-            to={"/onboardin"}
+            to={"/onboarding"}
             className="absolute left-0 bottom-1/2 translate-y-1/2"
           >
             <ChevronLeftIcon className="w-5 h-5 text-neutrals-50" />
