@@ -11,6 +11,8 @@ import {
 import Home from "./pages/Home/Home";
 import Onboarding from "./pages/Onboarding/Onboading";
 import SignUp from "./pages/SignUp/SignUp";
+import Activity from "./pages/Activity/Activity";
+import Profile from "./pages/Profile/Profile";
 import Wrapper from "./components/Wrapper/Wrapper";
 
 const routes = createRoutesFromElements(
@@ -39,6 +41,14 @@ const routes = createRoutesFromElements(
         </Wrapper>
       }
     />
+    <Route
+      path="/*"
+      element={
+        <Wrapper>
+          <Navigate to="/" />
+        </Wrapper>
+      }
+    />
   </Route>
 );
 
@@ -56,7 +66,15 @@ const authRoutes = createRoutesFromElements(
       path="/activity"
       element={
         <Wrapper>
-          <Home />
+          <Activity />
+        </Wrapper>
+      }
+    />
+    <Route
+      path="/profile"
+      element={
+        <Wrapper>
+          <Profile />
         </Wrapper>
       }
     />

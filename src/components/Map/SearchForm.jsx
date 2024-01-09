@@ -41,7 +41,7 @@ const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
           onChange={(e) => setDestinationLocation(e.target.value)}
           onClick={() => setIsExpanded(true)}
           isActive={isExpanded}
-          label={"Search Location"}
+          label={"Search Destination"}
         />
 
         <button className="invisible pointer-events-none opacity-0">

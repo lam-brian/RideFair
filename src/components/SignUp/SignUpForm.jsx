@@ -21,7 +21,7 @@ const SignUpForm = ({ handleSetUser }) => {
         <input
           type="text"
           id="firstName"
-          className="w-full border border-neutrals-300 mt-1 p-4 rounded-lg bg-blue-900 text-white placeholder-neutrals-300::placeholder focus:outline-none"
+          className="w-full border border-neutrals-300 mt-1 p-4 rounded-lg bg-blue-800 text-white placeholder-neutrals-300::placeholder focus:outline-none"
           value={firstName}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
@@ -39,7 +39,7 @@ const SignUpForm = ({ handleSetUser }) => {
         <input
           type="text"
           id="lastName"
-          className="w-full border border-neutrals-300 mt-1 p-4 rounded-lg bg-blue-900 text-white placeholder-neutrals-300::placeholder focus:outline-none"
+          className="w-full border border-neutrals-300 mt-1 p-4 rounded-lg bg-blue-800 text-white placeholder-neutrals-300::placeholder focus:outline-none"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           placeholder="Last Name"

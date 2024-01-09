@@ -38,7 +38,7 @@ const DriverOptions = ({ drivers, selectDriver }) => {
                 {driver.distance}
                 <span className="ml-3">⭐️ {driver.rating}</span>
               </p>
-              <p>{driver.competedTrips} completed trips</p>
+              <p>{driver.completedTrips} completed trips</p>
             </div>
           </div>
         </button>

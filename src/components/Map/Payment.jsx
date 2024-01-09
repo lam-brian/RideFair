@@ -8,10 +8,9 @@ const Payment = ({ handleReset }) => {
       <p className="mb-4">
         Total trip: <strong>$13.64</strong>
       </p>
-      <p className="text-sm mb-10">
+      <p className="text-sm mb-auto">
         You can view your trip history in your Activity.
       </p>
-      <div className="w-full h-px bg-neutrals-100 mb-auto"></div>
       <button
         onClick={handleReset}
         className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg"

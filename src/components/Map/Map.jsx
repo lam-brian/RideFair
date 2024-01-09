@@ -57,7 +57,7 @@ const Map = ({ locations }) => {
       new mapboxgl.Marker().setLngLat(destinationCoords).addTo(map);
 
       map.fitBounds([pickupCoords, destinationCoords], {
-        padding: 200,
+        padding: 150,
       });
     }
   }, [lng, lat, zoom, pickupCoords, destinationCoords]);
