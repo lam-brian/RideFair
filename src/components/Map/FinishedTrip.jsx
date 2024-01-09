@@ -37,7 +37,7 @@ const FinishedTrip = ({ driver, handlePayment }) => {
         setStars(Array.from({ length: 5 }, () => false));
       }}
       onClick={() => {
-        setSelectedStar(i);
+        setSelectedStar(i + 1);
         highlightStars(i);
       }}
       key={i}
