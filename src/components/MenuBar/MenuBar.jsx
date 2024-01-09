@@ -1,6 +1,12 @@
 import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
-import { HomeIcon, QueueListIcon, UserIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
+import {
+  HomeIcon as HomeIconActive,
+  UserIcon as UserIconActive,
+} from "@heroicons/react/24/solid";
+import activityIcon from "../../assets/activity-icon.svg";
+import activityActiveIcon from "../../assets/activity-active-icon.svg";
 
 const MenuBar = () => {
   const { pathname } = useLocation();
@@ -13,7 +19,11 @@ const MenuBar = () => {
           isActive ? "menuButton text-blue-200" : "menuButton"
         }
       >
-        <HomeIcon className="w-7" />
+        {pathname === "/" ? (
+          <HomeIconActive className="w-7" />
+        ) : (
+          <HomeIcon className="w-7" />
+        )}
         Home
       </NavLink>
       <NavLink
@@ -22,7 +32,11 @@ const MenuBar = () => {
           isActive ? "menuButton text-blue-200" : "menuButton"
         }
       >
-        <QueueListIcon className="w-7" />
+        <img
+          src={pathname === "/activity" ? activityActiveIcon : activityIcon}
+          alt=""
+          className="w-7 h-7"
+        />
         Activity
       </NavLink>
       <NavLink
@@ -31,7 +45,11 @@ const MenuBar = () => {
           isActive ? "menuButton text-blue-200" : "menuButton"
         }
       >
-        <UserIcon className="w-7" />
+        {pathname === "/profile" ? (
+          <UserIconActive className="w-7" />
+        ) : (
+          <UserIcon className="w-7" />
+        )}
         Profile
       </NavLink>
     </div>
