@@ -3,14 +3,13 @@
 ## 🚀 Submission
 This project was submitted to the Web5: Building the Decentralized Web Hackathon [here](https://web5.devpost.com/?ref_feature=challenge&ref_medium=discover).
 
-You can also try out the [live demo](https://ride-fair.netlify.app/).
-or run it locally.
+You can also try out the [live demo](https://ride-fair.netlify.app/) or run it locally.
 1. clone the repository
 2. run ```npm i```
 3. create a .env file and add your own Mapbox access key VITE_MAPBOX_KEY
 4. run ```npm run dev```
 
-##💡 Inspiration
+## 💡 Inspiration
 **Problem:** 
 The travel & transport industry is one of the least trusted industries regarding sharing data (BCG 2022). Knowing that users are most concerned about the misuse of their data by products in the travel and transportation industry, we wanted to tackle this problem space. 
 To address this critical issue, we identified two main problems: the unethical harvesting and selling of user data and the susceptibility to data breaches. Big companies like Uber and Lyft are harvesting and selling their users’ data, which is incredibly harmful and potentially dangerous to users. In 2018, Uber paid $148 million over a yearlong cover-up of a data breach–affecting 600,000 drivers & 57M users. Similarly, Didi, a ridesharing app in China, was fined $1.2B for violating laws on data security and the protection of personal information. Without the use of Web 5 technologies, millions of users are left vulnerable to data breaches and hacking. 
@@ -46,16 +45,16 @@ What sets RideFair apart is the unique ability for riders to freely share associ
 **Development Process:** We created our app using React.js for the front-end, Mapbox for the map, and Web5 to handle our data. Because of how powerful web5 is, there was really no need to incorporate a backend to handle data.
 
 
-##💪 Challenges we ran into
+## 💪 Challenges we ran into
 - Initially, we wanted to create a React Native project using Expo, however, we had issues using the Web5 API as it seemed to have errors when using an Expo managed workflow. 
 - Ran into issues trying to implement querying of other DIDs using the app as we had trouble creating our own aggregator.
 - Since there were no Web5 ride-sharing apps on the market, we extensively researched and considered numerous use-cases during the product design process. We also had to carefully select and prioritize features that were not only feasible but also had the greatest potential impact.
 
 
-##🎉 Accomplishments that we're proud of
+## 🎉 Accomplishments that we're proud of
 Given the one-month time constraint, we are proud of the fact that we were able to learn about cutting-edge, web 5 technologies to create this pwa app from scratch. We also take pride in our product, especially the fact that it addresses such an impactful problem space. In 2023 alone, 234 million people were victims of data compromises. With Ridefair, we are proud to promote user safety and privacy from the dangers that today’s ridesharing technologies pose.
 
-##📖 What we learned
+## 📖 What we learned
 We learned how to leverage TBD5 technology to help create our solution. In the process, we learned about the constraints of the technology, as well as the additional design and development challenges that are shaped by its unique demands. For example, in order to give users optimal privacy over data, our system needed to adjust to allow users to self-select their own drivers. This made it possible for users to withhold from sharing their data until much later in the process. Users would be able to self-select their drivers and keep their data private until they purchase their ride.
 
 ## What's next for RideFair
