@@ -1,4 +1,4 @@
-# 🌎 RideFair - Web5 Hackathon 
+# 🚗 RideFair - Web5 Hackathon 
 
 ## 🚀 Submission
 This project was submitted to the Web5: Building the Decentralized Web Hackathon [here]((https://web5.devpost.com/?ref_feature=challenge&ref_medium=discover)).
