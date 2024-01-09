@@ -1,9 +1,9 @@
 # 🚗 RideFair - Web5 Hackathon 
 
 ## 🚀 Submission
-This project was submitted to the Web5: Building the Decentralized Web Hackathon [here]((https://web5.devpost.com/?ref_feature=challenge&ref_medium=discover)).
+This project was submitted to the Web5: Building the Decentralized Web Hackathon [here](https://web5.devpost.com/?ref_feature=challenge&ref_medium=discover).
 
-You can also try out the [live demo]((https://ride-fair.netlify.app/)).
+You can also try out the [live demo](https://ride-fair.netlify.app/).
 or run it locally.
 1. clone the repository
 2. run ```npm i```
