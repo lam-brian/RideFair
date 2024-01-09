@@ -147,7 +147,7 @@ const Home = () => {
         >
           <div
             className={`w-20 h-1 ${
-              isSearching ? "bg-blue-400" : "bg-neutrals-300"
+              isSearching ? "bg-blue-800" : "bg-neutrals-300"
             } rounded-lg`}
           ></div>
         </div>
