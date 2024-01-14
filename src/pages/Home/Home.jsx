@@ -111,11 +111,14 @@ const Home = () => {
 
   if (flowStates[activeFlowIndex] === "search") {
     renderedComponent = (
-      <SearchForm
-        handleLocationSubmit={submitLocations}
-        isExpanded={isExpanded}
-        handleExpand={(boolean) => setIsExpanded(boolean)}
-      />
+      <>
+        <SearchForm
+          handleLocationSubmit={submitLocations}
+          isExpanded={isExpanded}
+          handleExpand={(boolean) => setIsExpanded(boolean)}
+        />
+        <MenuBar />
+      </>
     );
   }
 
