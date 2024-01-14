@@ -3,67 +3,40 @@ import { useState } from "react";
 import Map from "../../components/Map/Map";
 import MenuBar from "../../components/MenuBar/MenuBar";
 import SearchForm from "../../components/Search/SearchForm";
-import Searching from "../../components/Search/Searching";
 import RideOptions from "../../components/Options/RideOptions";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
-import driver1 from "../../assets/driver1.png";
-import driver2 from "../../assets/driver2.png";
-import driver3 from "../../assets/driver3.png";
 import DriverOptions from "../../components/Options/DriverOptions";
-import FinishedTrip from "../../components/FinishedTrip/FinishedTrip";
 import Payment from "../../components/FinishedTrip/Payment";
+import Receipt from "../../components/FinishedTrip/Receipt";
+import Loading from "../../components/general/Loading/Loading";
 
-const DUMMY_OPTIONS = [
-  { type: "Standard", eta: "1:00PM", distance: "3min away", price: "$10.40" },
-  {
-    type: "Eco-Friendly",
-    distance: "3min away",
-    price: "$11.40",
-  },
-  { type: "Carpool", distance: "3min away", price: "$5.40" },
-  { type: "Luxury", distance: "3min away", price: "$20.40" },
-];
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 
-const DUMMY_DRIVERS = [
-  {
-    name: "Adewale A.",
-    image: driver1,
-    car: "Silver BMW X5",
-    distance: "2 mins away",
-    rating: "4.9",
-    completedTrips: 220,
-    bestMatch: true,
-  },
-  {
-    name: "Ebony L.",
-    image: driver2,
-    car: "White Honda Accord",
-    distance: "7 mins away",
-    rating: "4.9",
-    completedTrips: 140,
-    bestMatch: false,
-  },
-  {
-    name: "Daniel B.",
-    image: driver3,
-    car: "Red Toyota Camry",
-    distance: "10 mins away",
-    rating: "4.9",
-    completedTrips: 100,
-    bestMatch: false,
-  },
-];
+const delay = (sec) => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res("Finished");
+    }, sec * 1000);
+  });
+};
 
 const Home = () => {
+  const [mapFinishedLoading, setMapFinishedLoading] = useState(false);
+  const flowStates = [
+    "search",
+    "rideOptions",
+    "driverOptions",
+    "review",
+    "receipt",
+  ];
+  const [activeFlowIndex, setActiveFlowIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [submittedLocations, setSubmittedLocations] = useState();
-  const [isSearching, setIsSearching] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [rideOptions, setRideOptions] = useState([]);
   const [selectedRide, setSelectedRide] = useState();
-  const [drivers, setDrivers] = useState([]);
+  const [driverOptions, setDriverOptions] = useState([]);
   const [selectedDriver, setSelectedDriver] = useState();
-  const [payment, setPayment] = useState();
-  const [mapFinishedLoading, setMapFinishedLoading] = useState(false);
+  const [submittedPayment, setSubmittedPayment] = useState();
 
   const submitLocations = (locationObj) => {
     setSubmittedLocations(locationObj);
@@ -71,79 +44,134 @@ const Home = () => {
     retrieveRideOptions();
   };
 
-  let tabHeight;
-
-  if (!mapFinishedLoading) {
-    tabHeight = "h-7";
-  } else {
-    if (isExpanded) {
-      tabHeight = "h-screen";
-    } else if (rideOptions.length && !drivers.length) {
-      tabHeight = "h-4/5";
-    } else {
-      tabHeight = "h-1/2";
-    }
-  }
-
   // Mock for now
   const retrieveRideOptions = async () => {
     try {
-      setIsSearching(true);
+      setIsLoading(true);
+      await delay(3);
+      const res = await fetch("./DATA.json");
+      const data = await res.json();
 
-      const data = await new Promise((res, rej) => {
-        setTimeout(() => {
-          const options = DUMMY_OPTIONS;
-          res(options);
-        }, 3000);
-      });
-
-      setRideOptions(data);
+      setRideOptions(data.rideOptions);
+      setActiveFlowIndex((state) => ++state);
     } catch (err) {
       console.log(err);
     } finally {
-      setIsSearching(false);
+      setIsLoading(false);
     }
+  };
+
+  const submitRideSelection = (rideSelection) => {
+    setSelectedRide(rideSelection);
+    retrieveDrivers();
   };
 
   // Mock for now
   const retrieveDrivers = async () => {
     try {
-      const data = await new Promise((res, rej) => {
-        const drivers = DUMMY_DRIVERS;
-        res(drivers);
-      });
+      setIsLoading(true);
+      await delay(2);
+      const res = await fetch("./DATA.json");
+      const data = await res.json();
 
-      setDrivers(data);
+      setDriverOptions(data.driverOptions);
+      setActiveFlowIndex((state) => ++state);
     } catch (err) {
       console.log(err);
     } finally {
-      setIsSearching(false);
+      setIsLoading(false);
     }
   };
 
-  const handleReset = () => {
+  const submitDriverSelection = (driverSelection) => {
+    setSelectedDriver(driverSelection);
+    setActiveFlowIndex((state) => ++state);
+    setIsExpanded(true);
+  };
+
+  const submitPayment = (payment) => {
+    setSubmittedPayment(payment);
+    setActiveFlowIndex((state) => ++state);
+    setIsExpanded(false);
+  };
+
+  const resetStates = () => {
+    setActiveFlowIndex(0);
     setIsExpanded(false);
     setSubmittedLocations();
-    setIsSearching(false);
+    setIsLoading(false);
     setRideOptions([]);
     setSelectedRide();
-    setDrivers([]);
+    setDriverOptions([]);
     setSelectedDriver();
-    setPayment();
+    setSubmittedPayment();
   };
+
+  let renderedComponent;
+
+  if (flowStates[activeFlowIndex] === "search") {
+    renderedComponent = (
+      <SearchForm
+        handleLocationSubmit={submitLocations}
+        isExpanded={isExpanded}
+        handleExpand={(boolean) => setIsExpanded(boolean)}
+      />
+    );
+  }
+
+  if (flowStates[activeFlowIndex] === "rideOptions") {
+    renderedComponent = (
+      <RideOptions
+        options={rideOptions}
+        handleRideSelect={submitRideSelection}
+      />
+    );
+  }
+
+  if (flowStates[activeFlowIndex] === "driverOptions") {
+    renderedComponent = (
+      <DriverOptions
+        options={driverOptions}
+        handleDriverSelect={submitDriverSelection}
+      />
+    );
+  }
+
+  if (flowStates[activeFlowIndex] === "review") {
+    renderedComponent = (
+      <Payment driver={selectedDriver} handleSubmitPayment={submitPayment} />
+    );
+  }
+
+  if (flowStates[activeFlowIndex] === "receipt") {
+    renderedComponent = <Receipt handleReset={resetStates} />;
+  }
+
+  let tabHeight;
+
+  if (!mapFinishedLoading) {
+    tabHeight = "h-7";
+  } else if (isExpanded) {
+    tabHeight = "h-screen";
+  } else if (flowStates[activeFlowIndex] === "rideOptions" && !isLoading) {
+    tabHeight = "h-4/5";
+  } else {
+    tabHeight = "h-1/2";
+  }
 
   return (
     <div className="relative text-white h-screen">
       <Map
-        isFinished={mapFinishedLoading}
+        isLoaded={mapFinishedLoading}
         locations={submittedLocations}
         handleFinishedLoading={() => {
           setMapFinishedLoading(true);
         }}
       />
-      {(!!rideOptions.length || !!drivers.length) && (
+      {(flowStates[activeFlowIndex] === "rideOptions" ||
+        flowStates[activeFlowIndex] === "driverOptions") && (
         <button
-          onClick={handleReset}
+          onClick={resetStates}
           className="absolute left-5 top-5 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center"
         >
           <ChevronLeftIcon className="w-5 h-5 text-blue-200" />
@@ -161,50 +189,13 @@ const Home = () => {
         >
           <div
             className={`w-20 h-1 ${
-              isSearching ? "bg-blue-800" : "bg-neutrals-300"
+              isLoading ? "bg-blue-800" : "bg-neutrals-300"
             } rounded-lg`}
           ></div>
         </div>
         {mapFinishedLoading && (
           <div className="flex-1 p-4 flex flex-col">
-            {!drivers.length && !rideOptions.length && !isSearching && (
-              <SearchForm
-                submitLocations={submitLocations}
-                isExpanded={isExpanded}
-                setIsExpanded={(boolean) => setIsExpanded(boolean)}
-              />
-            )}
-            {isSearching && <Searching />}
-            {!drivers.length && !!rideOptions.length && (
-              <RideOptions
-                options={rideOptions}
-                handleSelectRide={(ride) => {
-                  setSelectedRide(ride);
-                  retrieveDrivers();
-                }}
-              />
-            )}
-            {!selectedDriver && !!drivers.length && (
-              <DriverOptions
-                drivers={drivers}
-                selectDriver={(driver) => {
-                  console.log(driver);
-                  setSelectedDriver(driver);
-                  setIsExpanded(true);
-                }}
-              />
-            )}
-            {!payment && selectedDriver && (
-              <FinishedTrip
-                driver={selectedDriver}
-                handlePayment={(payment) => {
-                  setIsExpanded(false);
-                  setPayment(payment);
-                }}
-              />
-            )}
-            {payment && <Payment handleReset={handleReset} />}
-            {!drivers.length && !rideOptions.length && <MenuBar />}
+            {isLoading ? <Loading /> : renderedComponent}
           </div>
         )}
       </div>

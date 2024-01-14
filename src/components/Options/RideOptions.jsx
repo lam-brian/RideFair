@@ -1,18 +1,18 @@
+import { useState } from "react";
 import carStandard from "../../assets/car-standard.svg";
 import carEco from "../../assets/car-eco.svg";
 import carCarpool from "../../assets/car-carpool.svg";
 import carLuxury from "../../assets/car-luxury.svg";
 import visaIcon from "../../assets/visa.svg";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 
-const RideOptions = ({ options, handleSelectRide }) => {
+const RideOptions = ({ options, handleRideSelect }) => {
   const [selectedRide, setSelectedRide] = useState();
 
   const confirmRide = () => {
     if (!selectedRide) return;
 
-    handleSelectRide(selectedRide);
+    handleRideSelect(selectedRide);
   };
 
   const renderedOptions = options.map((option, i) => {

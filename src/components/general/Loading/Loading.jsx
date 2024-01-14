@@ -1,4 +1,4 @@
-const Searching = () => {
+const Loading = () => {
   const renderedList = new Array(4).fill(0).map((item, i) => (
     <li className="flex-1 flex gap-3" key={i}>
       <div className="w-9 h-9 rounded-full bg-blue-800"></div>
@@ -18,4 +18,4 @@ const Searching = () => {
   );
 };
 
-export default Searching;
+export default Loading;

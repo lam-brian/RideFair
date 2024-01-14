@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-const DriverOptions = ({ drivers, selectDriver }) => {
+const DriverOptions = ({ options, handleDriverSelect }) => {
   const [selectedDriver, setSelectedDriver] = useState();
 
   const handleRequestDriver = () => {
     if (!selectedDriver) return;
 
-    selectDriver(selectedDriver);
+    handleDriverSelect(selectedDriver);
   };
 
-  const renderedOptions = drivers.map((driver, i) => {
+  const renderedOptions = options.map((driver, i) => {
     return (
       <li key={i} className="flex-1">
         <button

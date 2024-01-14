@@ -3,7 +3,7 @@ import { Web5Context } from "../../store/web5-context";
 import SearchInput from "./SearchInput";
 import { BookmarkIcon } from "@heroicons/react/24/solid";
 
-const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
+const SearchForm = ({ handleLocationSubmit, isExpanded, handleExpand }) => {
   const web5Ctx = useContext(Web5Context);
   const { user } = web5Ctx;
   const [pickupLocation, setPickupLocation] = useState("My Location");
@@ -13,7 +13,7 @@ const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
     e.preventDefault();
     if (!pickupLocation.trim() || !destinationLocation.trim()) return;
 
-    submitLocations({
+    handleLocationSubmit({
       pickupLocation,
       destinationLocation,
     });
@@ -30,7 +30,7 @@ const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
             onChange={(e) => {
               setPickupLocation(e.target.value);
             }}
-            onClick={() => setIsExpanded(true)}
+            onClick={() => handleExpand(true)}
             isActive={isExpanded}
             label={"Pickup Location"}
           />
@@ -39,7 +39,7 @@ const SearchForm = ({ submitLocations, isExpanded, setIsExpanded }) => {
         <SearchInput
           value={destinationLocation}
           onChange={(e) => setDestinationLocation(e.target.value)}
-          onClick={() => setIsExpanded(true)}
+          onClick={() => handleExpand(true)}
           isActive={isExpanded}
           label={"Search Destination"}
         />
