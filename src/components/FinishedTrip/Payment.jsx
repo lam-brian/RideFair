@@ -3,6 +3,14 @@ import { StarIcon as StarActive } from "@heroicons/react/24/solid";
 import { StarIcon as Star, ChevronDownIcon } from "@heroicons/react/24/outline";
 import visaIcon from "../../assets/visa.svg";
 
+const tipOptions = [
+  { text: "$1", value: 1 },
+  { text: "$2", value: 2 },
+  { text: "$3", value: 3 },
+  { text: "No tip", value: 0 },
+  { text: "Custom", value: undefined },
+];
+
 const Payment = ({ driver, handleSubmitPayment }) => {
   const [stars, setStars] = useState(Array.from({ length: 5 }, () => false));
   const [selectedStar, setSelectedStar] = useState();
@@ -47,6 +55,20 @@ const Payment = ({ driver, handleSubmitPayment }) => {
     </button>
   ));
 
+  const renderedTipButtons = tipOptions.map((tipOption, i) => (
+    <button
+      key={i}
+      onClick={() => {
+        setTip(tipOption.value);
+      }}
+      className={`border border-neutrals-100 rounded-lg hover:bg-blue-200 hover:text-blue-700 py-2 px-4 ${
+        tipOption.text.startsWith("$") ? "col-span-2" : "col-span-3"
+      }  ${tip === tipOption.value ? "bg-blue-200 text-blue-700" : ""}`}
+    >
+      {tipOption.text}
+    </button>
+  ));
+
   return (
     <div className="flex flex-col items-center h-full">
       <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
@@ -67,56 +89,7 @@ const Payment = ({ driver, handleSubmitPayment }) => {
       <p className="font-bold text-white self-start text-xl mb-4">Add tip</p>
 
       <div className="grid grid-cols-6 grid-rows-2 w-full gap-4 mb-4">
-        <button
-          onClick={() => {
-            setTip(1);
-          }}
-          className={`border border-neutrals-100 rounded-lg hover:bg-blue-200 hover:text-blue-700 py-2 px-4 col-span-2 ${
-            tip === 1 ? "bg-blue-200 text-blue-700" : ""
-          }`}
-        >
-          $1
-        </button>
-        <button
-          onClick={() => {
-            setTip(2);
-          }}
-          className={`border border-neutrals-100 rounded-lg hover:bg-blue-200 hover:text-blue-700 py-2 px-4 col-span-2 ${
-            tip === 2 ? "bg-blue-200 text-blue-700" : ""
-          }`}
-        >
-          $2
-        </button>
-        <button
-          onClick={() => {
-            setTip(3);
-          }}
-          className={`border border-neutrals-100 rounded-lg hover:bg-blue-200 hover:text-blue-700 py-2 px-4 col-span-2 ${
-            tip === 3 ? "bg-blue-200 text-blue-700" : ""
-          }`}
-        >
-          $3
-        </button>
-        <button
-          onClick={() => {
-            setTip(0);
-          }}
-          className={`border border-neutrals-100 rounded-lg hover:bg-blue-200 hover:text-blue-700 py-2 px-4 col-span-3 ${
-            tip === 0 ? "bg-blue-200 text-blue-700" : ""
-          }`}
-        >
-          No tip
-        </button>
-        <button
-          onClick={() => {
-            setTip("custom");
-          }}
-          className={`border border-neutrals-100 rounded-lg hover:bg-blue-200 hover:text-blue-700 py-2 px-4 col-span-3 ${
-            tip === "custom" ? "bg-blue-200 text-blue-700" : ""
-          }`}
-        >
-          Custom
-        </button>
+        {renderedTipButtons}
       </div>
 
       <div className="w-full flex gap-2 mb-4">
