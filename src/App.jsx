@@ -13,7 +13,7 @@ import Onboarding from "./pages/Onboarding/Onboading";
 import SignUp from "./pages/SignUp/SignUp";
 import Activity from "./pages/Activity/Activity";
 import Profile from "./pages/Profile/Profile";
-import Wrapper from "./components/general/Wrapper/Wrapper";
+import Wrapper from "./components/General/Wrapper/Wrapper";
 
 const routes = createRoutesFromElements(
   <Route>

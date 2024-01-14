@@ -7,7 +7,7 @@ import RideOptions from "../../components/Options/RideOptions";
 import DriverOptions from "../../components/Options/DriverOptions";
 import Payment from "../../components/FinishedTrip/Payment";
 import Receipt from "../../components/FinishedTrip/Receipt";
-import Loading from "../../components/general/Loading/Loading";
+import Loading from "../../components/General/Loading/Loading";
 
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 
