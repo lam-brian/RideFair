@@ -2,16 +2,16 @@ import { useState } from "react";
 
 import Map from "../../components/Map/Map";
 import MenuBar from "../../components/MenuBar/MenuBar";
-import SearchForm from "../../components/Map/SearchForm";
-import Searching from "../../components/Map/Searching";
-import RideOptions from "../../components/Map/RideOptions";
+import SearchForm from "../../components/Search/SearchForm";
+import Searching from "../../components/Search/Searching";
+import RideOptions from "../../components/Options/RideOptions";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import driver1 from "../../assets/driver1.png";
 import driver2 from "../../assets/driver2.png";
 import driver3 from "../../assets/driver3.png";
-import DriverOptions from "../../components/Map/DriverOptions";
-import FinishedTrip from "../../components/Map/FinishedTrip";
-import Payment from "../../components/Map/Payment";
+import DriverOptions from "../../components/Options/DriverOptions";
+import FinishedTrip from "../../components/FinishedTrip/FinishedTrip";
+import Payment from "../../components/FinishedTrip/Payment";
 
 const DUMMY_OPTIONS = [
   { type: "Standard", eta: "1:00PM", distance: "3min away", price: "$10.40" },
