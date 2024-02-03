@@ -164,7 +164,6 @@ const Home = () => {
 
   return (
     <div className="relative text-white h-screen">
-      <div>Test</div>
       <Map
         isLoaded={mapFinishedLoading}
         locations={submittedLocations}
