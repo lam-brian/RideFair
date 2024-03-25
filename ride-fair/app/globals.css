@@ -34,4 +34,20 @@ body {
   .max-h-mobile {
     max-height: 50rem;
   }
+
+  .label {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-neutrals-300 transition-all;
+  }
+
+  .label--active {
+    @apply text-xs top-2 translate-y-0;
+  }
+
+  .input {
+    @apply w-full p-4 bg-transparent border border-neutrals-500 rounded-md;
+  }
+
+  .input--active {
+    @apply pt-6 pb-2;
+  }
 }

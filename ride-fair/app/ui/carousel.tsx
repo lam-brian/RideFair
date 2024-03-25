@@ -38,7 +38,7 @@ const Carousel = ({ slides, className }: PropTypes) => {
     >
       <ul className="basis-3/4 relative overflow-hidden">{renderedSlides}</ul>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center -mt-8 z-10">
         {slides.map((_, index) => (
           <div
             key={index}

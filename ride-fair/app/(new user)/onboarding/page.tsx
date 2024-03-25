@@ -28,7 +28,7 @@ export const FEATURE_CONCEPTS = [
 
 const Onboarding = () => {
   return (
-    <div className="h-full bg-blue-900 px-6 flex flex-col justify-between">
+    <div className="h-full bg-blue-900 px-6 flex flex-col justify-end">
       <Carousel slides={FEATURE_CONCEPTS} className="w-full h-4/6 mt-20" />
       <div className="flex flex-col items-center gap-4 mb-8">
         <Link
