@@ -30,4 +30,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .max-h-mobile {
+    max-height: 50rem;
+  }
 }
