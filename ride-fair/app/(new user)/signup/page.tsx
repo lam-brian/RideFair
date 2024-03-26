@@ -1,38 +1,42 @@
 import SignUpForm from "@/app/ui/signup/signup-form";
+import Link from "next/link";
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { UserData } from "@/app/lib/definitions";
 
 export default function SignUp() {
+  const createUser = async (prevState: any, formData: FormData) => {
+    "use server";
+    try {
+      const firstName = formData.get("first-name");
+      const lastName = formData.get("last-name");
+
+      if (!firstName || !lastName) {
+        throw new Error("Please fill in all required fields.");
+      }
+
+      return { message: "User created successfully!" };
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return { message: err.message };
+      }
+
+      return { message: "Something went wrong" };
+    }
+  };
+
   return (
-    <div className="px-6">
-      <div>
-        <button>Left</button>
-        <h1>Sign up</h1>
+    <div className="page-padding h-full flex flex-col">
+      <div className="text-center mt-12 mb-6 relative">
+        <Link
+          href="/onboarding"
+          className="w-6 absolute left-0 top-1/2 -translate-y-1/2"
+          aria-label="Go back"
+        >
+          <ChevronLeftIcon />
+        </Link>
+        <h1 className="text-2xl">Sign up</h1>
       </div>
-      <SignUpForm />
+      <SignUpForm createUser={createUser} />
     </div>
-    // <div className="flex flex-col items-center justify-center h-screen bg-blue-900 px-6">
-    //   <div className="relative w-full text-center mt-12 mb-6">
-    //     {/* {!isCompleted && (
-    //       <NavLink
-    //         to={"/onboarding"}
-    //         className="absolute left-0 bottom-1/2 translate-y-1/2"
-    //       >
-    //         <ChevronLeftIcon className="w-5 h-5 text-neutrals-50" />
-    //       </NavLink>
-    //     )} */}
-    //     <h1 className="text-2xl font-semibold text-neutrals-50 ">
-    //       {/* {!isCompleted ? "Sign up" : "Thanks for signing up!"} */}
-    //     </h1>
-    //   </div>
-    //   {/* {!isCompleted ? (
-    //     <SignUpForm
-    //       handleSetUser={(user) => {
-    //         setUser(user);
-    //         setIsCompleted(true);
-    //       }}
-    //     />
-    //   ) : (
-    //     <SignUpCompletion handleWriteUser={writeUserToDWN.bind(null, user)} />
-    //   )} */}
-    // </div>
   );
 }

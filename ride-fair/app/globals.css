@@ -35,6 +35,10 @@ body {
     max-height: 50rem;
   }
 
+  .page-padding {
+    @apply px-6 py-8;
+  }
+
   .label {
     @apply absolute left-4 top-1/2 -translate-y-1/2 text-neutrals-300 transition-all;
   }

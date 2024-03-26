@@ -1,18 +1,15 @@
-import LoadingScreen from "./ui/loading-screen";
+import SplashScreen from "./ui/splash-screen";
 import { cookies } from "next/headers";
 import { UserData } from "./lib/definitions";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  let user = undefined;
-
-  const setUser = async (userData: UserData | undefined) => {
+  const setUser = async (userData: UserData | {}) => {
     "use server";
 
     // cookies().set("isLoggedIn", "true");
     console.log(userData);
-
-    if (!userData) {
+    if (!Object.entries(userData).length) {
       redirect("/onboarding");
       return;
     }
@@ -20,7 +17,7 @@ export default function Home() {
 
   return (
     <section className="w-full h-full">
-      <LoadingScreen setUser={setUser} />
+      <SplashScreen setUser={setUser} />
     </section>
   );
 }
