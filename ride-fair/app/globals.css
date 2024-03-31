@@ -54,4 +54,16 @@ body {
   .input--active {
     @apply pt-6 pb-2;
   }
+
+  .button {
+    @apply font-semibold py-4 px-6 rounded-lg transition ease-out hover:opacity-75;
+  }
+
+  .button-primary {
+    @apply bg-blue-200 text-neutrals-900;
+  }
+
+  .button-disabled {
+    @apply bg-neutrals-800 text-neutrals-700;
+  }
 }

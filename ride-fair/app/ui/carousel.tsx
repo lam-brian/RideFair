@@ -1,13 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useRef } from "react";
 import Image from "next/image";
-import { Slide } from "../lib/definitions";
 
 type PropTypes = {
   slides: Slide[];
   className?: string;
+};
+
+type Slide = {
+  image: string;
+  title: string;
+  description: string;
 };
 
 const Carousel = ({ slides, className }: PropTypes) => {

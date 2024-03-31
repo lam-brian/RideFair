@@ -2,6 +2,7 @@
 
 import { useEffect, useState, createContext } from "react";
 import { UserData, Web5Instance } from "./definitions";
+import { clearLoggingCookie } from "./server-actions";
 import { Web5 } from "@web5/api/browser";
 
 type StoreType = {
@@ -59,6 +60,10 @@ const Web5Provider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     initWeb5();
+
+    return () => {
+      clearLoggingCookie();
+    };
   }, []);
 
   const createUser = async (user: UserData) => {

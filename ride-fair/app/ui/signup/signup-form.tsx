@@ -1,25 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { Web5Context } from "@/app/lib/store";
 import { useFormStatus, useFormState } from "react-dom";
+import { UserData } from "@/app/lib/definitions";
 
 type PropTypes = {
   createUser: (
     prevState: any,
     formData: FormData
-  ) => Promise<{ message: string }>;
+  ) => Promise<{ message: string; user: UserData | null }>;
 };
 
 const initialState = {
   message: "",
+  user: null,
 };
 
 export default function SignUpForm({ createUser }: PropTypes) {
+  const ctx = useContext(Web5Context);
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredLastName, setEnteredLastName] = useState("");
   const [firstNameActive, setFirstNameActive] = useState(false);
   const [lastNameActive, setLastNameActive] = useState(false);
   const [state, formAction] = useFormState(createUser, initialState);
+
+  useEffect(() => {
+    if (state && state.user) {
+      ctx.createUser(state.user);
+    }
+
+    console.log(state.message);
+  }, [state, ctx]);
 
   const buttonIsActive = !!enteredFirstName && !!enteredLastName;
 
@@ -108,10 +120,8 @@ function SubmitBtn({ isActive }: { isActive: boolean }) {
     <button
       type="submit"
       disabled={pending}
-      className={`font-semibold py-4 px-6 rounded-lg transition ease-out${
-        isActive && !pending
-          ? " bg-blue-200 text-neutrals-900"
-          : " bg-neutrals-800 text-neutrals-700"
+      className={`button${
+        isActive && !pending ? " button-primary" : " button-disabled"
       }`}
     >
       {pending ? "Submitting..." : "Agree and Continue"}
