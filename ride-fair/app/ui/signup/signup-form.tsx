@@ -1,42 +1,45 @@
 "use client";
 
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { Web5Context } from "@/app/lib/store";
-import { useFormStatus, useFormState } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { UserData } from "@/app/lib/definitions";
 
 type PropTypes = {
-  createUser: (
-    prevState: any,
-    formData: FormData
-  ) => Promise<{ message: string; user: UserData | null }>;
+  login: () => void;
 };
 
-const initialState = {
-  message: "",
-  user: null,
-};
-
-export default function SignUpForm({ createUser }: PropTypes) {
+export default function SignUpForm({ login }: PropTypes) {
   const ctx = useContext(Web5Context);
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredLastName, setEnteredLastName] = useState("");
   const [firstNameActive, setFirstNameActive] = useState(false);
   const [lastNameActive, setLastNameActive] = useState(false);
-  const [state, formAction] = useFormState(createUser, initialState);
 
-  useEffect(() => {
-    if (state && state.user) {
-      ctx.createUser(state.user);
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const newUser: UserData = {
+        firstName: enteredFirstName.trim(),
+        lastName: enteredLastName.trim(),
+      };
+
+      const res = await ctx.createUser(newUser);
+
+      if (res?.message) {
+        login();
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      }
     }
-
-    console.log(state.message);
-  }, [state, ctx]);
+  };
 
   const buttonIsActive = !!enteredFirstName && !!enteredLastName;
 
   return (
-    <form action={formAction} className="flex-1 flex flex-col gap-6">
+    <form onSubmit={handleFormSubmit} className="flex-1 flex flex-col gap-6">
       <div className="relative w-full">
         <label
           htmlFor="first-name"
@@ -83,12 +86,6 @@ export default function SignUpForm({ createUser }: PropTypes) {
           onChange={(e) => setEnteredLastName(e.target.value.trim())}
         />
       </div>
-
-      {state.message ? (
-        <p className="pl-4 text-red-500">{state.message}</p>
-      ) : (
-        ""
-      )}
 
       <p className="text-neutrals-100 mb-4 mt-auto">
         By selecting Agree and continue, I agree to RideFair’s

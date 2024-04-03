@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useCallback } from "react";
 import { UserData, Web5Instance } from "./definitions";
-import { clearLoggingCookie } from "./server-actions";
 import { Web5 } from "@web5/api/browser";
+import { clearNewUserCookie, setNewUserCookie } from "./server-actions";
+import SplashScreen from "../ui/splash-screen";
 
 type StoreType = {
   web5Instance: Web5Instance;
   user: UserData | {};
-  createUser: (user: UserData) => void;
+  createUser: (user: UserData) => Promise<{ message: string } | void>;
 };
 
 export const Web5Context = createContext<StoreType>({
@@ -17,7 +18,7 @@ export const Web5Context = createContext<StoreType>({
     userDid: "",
   },
   user: {},
-  createUser: () => {},
+  createUser: async () => {},
 });
 
 const Web5Provider = ({ children }: { children: React.ReactNode }) => {
@@ -26,44 +27,53 @@ const Web5Provider = ({ children }: { children: React.ReactNode }) => {
     userDid: "",
   });
   const [user, setUser] = useState<StoreType["user"]>({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const initWeb5 = async () => {
-      // @ts-ignore
-      const { Web5 } = await import("@web5/api/browser");
-
-      try {
-        const { web5, did: userDid } = await Web5.connect({
-          sync: "5s",
-        });
-
-        setWeb5Instance({
-          web5,
-          userDid,
-        });
-
-        const { records } = await web5.dwn.records.query({
-          message: {
-            filter: {
-              schema: "http://ridefair.com/user",
-            },
-          },
-        });
-
-        if (records && records.length) {
-          const data = await records.at(-1)?.data.json();
-          console.log(data);
-          setUser(data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
     initWeb5();
 
     return () => {
-      clearLoggingCookie();
+      clearNewUserCookie();
     };
+  }, []);
+
+  const initWeb5 = useCallback(async () => {
+    // @ts-ignore
+    const { Web5 } = await import("@web5/api/browser");
+
+    try {
+      const { web5, did: userDid } = await Web5.connect({
+        sync: "5s",
+      });
+
+      setWeb5Instance({
+        web5,
+        userDid,
+      });
+
+      const { records } = await web5.dwn.records.query({
+        message: {
+          filter: {
+            schema: "http://ridefair.com/user",
+          },
+        },
+      });
+
+      if (!records || !records.length) {
+        setNewUserCookie();
+        return;
+      }
+
+      const data = (await records.at(-1)?.data.json()) as UserData;
+      console.log(data);
+      setUser(data);
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   const createUser = async (user: UserData) => {
@@ -83,10 +93,15 @@ const Web5Provider = ({ children }: { children: React.ReactNode }) => {
 
       if (!record) throw new Error("Something went wrong");
 
+      const response = await record?.send(userDid);
+
+      if (response.status.code !== 202) throw new Error("Something went wrong");
+
       setUser(user);
-      record?.send(userDid);
+      return { message: "User created successfully" };
     } catch (err) {
       console.log(err);
+      throw err;
     }
   };
 
@@ -98,7 +113,7 @@ const Web5Provider = ({ children }: { children: React.ReactNode }) => {
         createUser,
       }}
     >
-      {children}
+      {isLoading ? <SplashScreen /> : children}
     </Web5Context.Provider>
   );
 };

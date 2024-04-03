@@ -1,26 +1,27 @@
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const isLoggedIn = request.cookies.get("isLoggedIn")?.value;
+  const isNewUser = request.cookies.get("newUser")?.value;
 
   if (
-    !isLoggedIn &&
+    isNewUser &&
     request.nextUrl.pathname.startsWith("/") &&
-    !request.nextUrl.pathname.endsWith("/onboarding") &&
-    !request.nextUrl.pathname.endsWith("/signup")
+    !request.nextUrl.pathname.endsWith("onboarding") &&
+    !request.nextUrl.pathname.endsWith("signup")
   ) {
-    return Response.redirect(new URL("/", request.url));
+    return Response.redirect(new URL("/onboarding", request.url));
   }
-
+  console.log(isNewUser);
   if (
-    isLoggedIn &&
-    (request.nextUrl.pathname.endsWith("/onboarding") ||
-      request.nextUrl.pathname.endsWith("/signup"))
+    !isNewUser &&
+    request.nextUrl.pathname.startsWith("/") &&
+    (request.nextUrl.pathname.endsWith("onboarding") ||
+      request.nextUrl.pathname.endsWith("signup"))
   ) {
     return Response.redirect(new URL("/", request.url));
   }
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|settings|$).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|settings).*)"],
 };

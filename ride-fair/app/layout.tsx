@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + "bg-neutrals-700"}>
-        <main className="bg-neutrals-900 max-w-lg max-h-mobile mx-auto h-screen rounded-md overflow-hidden">
+        <main className="bg-neutrals-900 max-w-lg h-screen mx-auto rounded-md overflow-hidden">
           <Web5Provider>{children}</Web5Provider>
         </main>
       </body>

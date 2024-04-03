@@ -2,6 +2,10 @@
 
 import { cookies } from "next/headers";
 
-export const clearLoggingCookie = () => {
-  cookies().delete("isLoggedIn");
+export const setNewUserCookie = async () => {
+  cookies().set("newUser", "true");
+};
+
+export const clearNewUserCookie = async () => {
+  cookies().delete("newUser");
 };
