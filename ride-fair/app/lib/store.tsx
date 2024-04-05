@@ -65,7 +65,6 @@ const Web5Provider = ({ children }: { children: React.ReactNode }) => {
       }
 
       const data = (await records.at(-1)?.data.json()) as UserData;
-      console.log(data);
       setUser(data);
 
       return data;

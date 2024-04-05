@@ -103,7 +103,12 @@ export default function SignUpForm({ login }: PropTypes) {
           {" "}
           Notification Policy{" "}
         </a>
-        and acknowledge the Privacy Policy.
+        and acknowledge the
+        <a href="#" className="text-blue-300">
+          {" "}
+          Privacy Policy
+        </a>
+        .
       </p>
       <SubmitBtn isActive={buttonIsActive} />
     </form>
