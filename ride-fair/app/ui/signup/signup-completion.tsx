@@ -1,11 +1,11 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { Web5Context } from "@/app/lib/store";
+import { Context } from "@/app/lib/store";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 
 export default function SignUpCompletion() {
-  const { userDid } = useContext(Web5Context).web5Instance;
+  const { userDid } = useContext(Context).web5Instance;
   const [isCopied, setIsCopied] = useState(false);
 
   const didToClip = () => {

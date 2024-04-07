@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useContext, FormEvent } from "react";
-import { Web5Context } from "@/app/lib/store";
+import { Context } from "@/app/lib/store";
 import { useFormStatus } from "react-dom";
 import { UserData } from "@/app/lib/definitions";
 
@@ -10,7 +10,7 @@ type PropTypes = {
 };
 
 export default function SignUpForm({ login }: PropTypes) {
-  const ctx = useContext(Web5Context);
+  const ctx = useContext(Context);
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredLastName, setEnteredLastName] = useState("");
   const [firstNameActive, setFirstNameActive] = useState(false);

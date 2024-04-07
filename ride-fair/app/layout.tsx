@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Web5Provider from "./lib/store";
+import ContextProvider from "./lib/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className + "bg-neutrals-700"}>
         <main className="bg-neutrals-900 max-w-lg h-screen mx-auto rounded-md overflow-hidden">
-          <Web5Provider>{children}</Web5Provider>
+          <ContextProvider>{children}</ContextProvider>
         </main>
       </body>
     </html>
