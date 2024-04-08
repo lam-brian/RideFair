@@ -34,7 +34,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     web5: {},
     userDid: "",
   });
-  const [user, setUser] = useState<StoreType["user"]>({});
+  const [user, setUser] = useState<StoreType["user"]>(null);
   const [userLocation, setUserLocation] = useState<StoreType["userLocation"]>({
     latitude: 0,
     longitude: 0,

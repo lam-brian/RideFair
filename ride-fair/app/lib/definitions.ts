@@ -9,3 +9,8 @@ export type Web5Instance = {
   web5: Web5 | {};
   userDid: string;
 };
+
+export type RideLocations = {
+  pickup: string;
+  dropOff: string;
+};

@@ -1,26 +1,32 @@
 import { useState, useContext, FormEvent } from "react";
 import { Context } from "@/app/lib/store";
+import { RideLocations } from "@/app/lib/definitions";
 import SearchInput from "./search-input";
 import { BookmarkIcon } from "@heroicons/react/24/solid";
 
 type PropTypes = {
   isExpanded: boolean;
   expandTab: (state: boolean) => void;
+  onSearch: (locations: RideLocations) => void;
 };
 
-export default function SearchForm({ isExpanded, expandTab }: PropTypes) {
+export default function SearchDestination({
+  isExpanded,
+  expandTab,
+  onSearch,
+}: PropTypes) {
   const { user } = useContext(Context);
   const [pickupLocation, setPickupLocation] = useState("My Location");
-  const [destinationLocation, setDestinationLocation] = useState("");
+  const [dropOffLocation, setDropOffLocation] = useState("");
 
   const handleSearching = (e: FormEvent) => {
     e.preventDefault();
-    if (!pickupLocation.trim() || !destinationLocation.trim()) return;
+    if (!pickupLocation.trim() || !dropOffLocation.trim()) return;
 
-    // handleLocationSubmit({
-    //   pickupLocation,
-    //   destinationLocation,
-    // });
+    onSearch({
+      pickup: pickupLocation.trim(),
+      dropOff: dropOffLocation.trim(),
+    });
   };
 
   return (
@@ -43,9 +49,9 @@ export default function SearchForm({ isExpanded, expandTab }: PropTypes) {
         )}
 
         <SearchInput
-          value={destinationLocation}
+          value={dropOffLocation}
           onChange={(e) =>
-            setDestinationLocation((e.target as HTMLInputElement).value)
+            setDropOffLocation((e.target as HTMLInputElement).value)
           }
           onClick={expandTab.bind(null, true)}
           isActive={isExpanded}
