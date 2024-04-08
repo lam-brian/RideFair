@@ -1,5 +1,4 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { ChangeEventHandler } from "react";
 
 type PropTypes = {
   label: string;

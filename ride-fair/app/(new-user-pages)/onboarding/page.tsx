@@ -33,13 +33,13 @@ const Onboarding = () => {
       <div className="flex flex-col items-center gap-4">
         <Link
           href="/signup"
-          className="text-base font-semibold bg-blue-200 text-blue-900 py-4 w-full rounded-lg text-center"
+          className="text-base font-semibold bg-blue-300 text-blue-900 py-4 w-full rounded-lg text-center"
         >
           Sign Up
         </Link>
         <p>
           Have an existing account?{" "}
-          <a href="#" className="text-blue-200">
+          <a href="#" className="text-blue-300">
             Login
           </a>
         </p>

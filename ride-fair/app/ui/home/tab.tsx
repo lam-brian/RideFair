@@ -9,7 +9,7 @@ export default function Tab({
 }) {
   return (
     <div
-      className={`transition-all bg-neutrals-900 absolute z-10 w-full bottom-0 rounded-t-xl pt-8 px-6${
+      className={`flex flex-col transition-all bg-neutrals-900 absolute z-10 w-full bottom-0 rounded-t-xl pt-8${
         isExpanded ? " min-h-full" : " min-h-[40%]"
       }`}
     >

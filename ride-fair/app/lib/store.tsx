@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, createContext, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { UserData, Web5Instance } from "./definitions";
 import { Web5 } from "@web5/api/browser";
 import { clearNewUserCookie, setNewUserCookie } from "./server-actions";
@@ -40,6 +41,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     longitude: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   const init = useCallback(async () => {
     // @ts-ignore
@@ -76,6 +78,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (!records || !records.length) {
         setNewUserCookie();
+        router.replace("/onboarding");
         return;
       }
 

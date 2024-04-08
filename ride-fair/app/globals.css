@@ -60,10 +60,14 @@ body {
   }
 
   .button-primary {
-    @apply bg-blue-200 text-neutrals-900;
+    @apply bg-blue-300 text-neutrals-900;
   }
 
   .button-disabled {
     @apply bg-neutrals-800 text-neutrals-700;
+  }
+
+  .button-nav {
+    @apply flex-1 flex flex-col justify-center items-center p-0 h-full;
   }
 }

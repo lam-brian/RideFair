@@ -48,8 +48,8 @@ const Carousel = ({ slides, className }: PropTypes) => {
             key={index}
             className={`${
               currentSlide === index
-                ? "w-8 h-3 rounded-full bg-blue-200 mx-2"
-                : "w-3 h-3 rounded-full bg-blue-400 mx-2"
+                ? "w-8 h-3 rounded-full bg-blue-300 mx-2"
+                : "w-3 h-3 rounded-full border border-blue-300 mx-2"
             } cursor-pointer`}
             onClick={() => setCurrentSlide(index)}
           ></div>

@@ -4,7 +4,7 @@ import Spinner from "./spinner/spinner";
 
 export default function SplashScreen() {
   return (
-    <div className="bg-blue-900 w-full h-full flex flex-col items-center justify-center gap-12">
+    <div className="bg-neutrals-900 w-full h-full flex flex-col items-center justify-center gap-12">
       <Image src={logo} alt="Logo" priority={true} className="flex w-[19rem]" />
 
       <Spinner />

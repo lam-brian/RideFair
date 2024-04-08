@@ -66,8 +66,8 @@ export default function SearchDestination({
       <ul className="flex flex-col mb-auto">
         <li className="flex-1">
           <button className="w-full flex items-center gap-4">
-            <div className="w-9 h-9 rounded-full bg-neutrals-500 flex items-center justify-center">
-              <BookmarkIcon className="w-5 text-neutrals-100" />
+            <div className="w-9 h-9 rounded-full bg-neutrals-800 flex items-center justify-center">
+              <BookmarkIcon className="w-5 text-neutrals-300" />
             </div>
             Saved places
           </button>

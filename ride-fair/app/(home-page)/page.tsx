@@ -5,6 +5,7 @@ import { RideLocations } from "../lib/definitions";
 import Map from "../ui/home/map";
 import SearchDestination from "../ui/home/search-destination/search-destination";
 import Tab from "../ui/home/tab";
+import NavBar from "../ui/nav-bar";
 
 enum Stages {
   Search,
@@ -23,9 +24,11 @@ export default function HomePage() {
     setTabExpanded(state);
   };
 
-  const handleSearch = (locations: RideLocations) => {
-    setRideLocations(locations);
-    setTabExpanded(false);
+  const handleSearch = async (locations: RideLocations) => {
+    try {
+      setRideLocations(locations);
+      setTabExpanded(false);
+    } catch (err) {}
   };
 
   let tabContent;
@@ -50,7 +53,8 @@ export default function HomePage() {
         isExpanded={tabExpanded}
         expandTab={handleTabExpand.bind(null, !tabExpanded)}
       >
-        {tabContent}
+        <div className="px-6 flex-1">{tabContent}</div>
+        <NavBar />
       </Tab>
     </section>
   );
