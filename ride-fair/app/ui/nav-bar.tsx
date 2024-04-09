@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+
 import { usePathname } from "next/navigation";
 import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 import {
@@ -12,7 +12,7 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex justify-between items-center w-full h-16 text-neutrals-300 mb-4 pt-4 border-t border-neutrals-800">
+    <div className="flex justify-between items-center w-full h-16 text-neutrals-300 mb-4 border-t border-neutrals-800">
       <Link
         href="/"
         className={`button button-nav${
@@ -32,14 +32,7 @@ export default function NavBar() {
           pathname === "/activity" ? " text-blue-300" : ""
         }`}
       >
-        {/* <Image
-          src={pathname === "/activity" ? activityActiveIcon : activityIcon}
-          alt=""
-          className="w-7 h-7"
-        /> */}
-        <div className="h-12 w-12">
-          <CarIcon className="w-full h-full" />
-        </div>
+        <CarIcon className="basis-1/2 w-7 translate-y-[20%] scale-110 fill-inherit" />
         My Rides
       </Link>
       <Link

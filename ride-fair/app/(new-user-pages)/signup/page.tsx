@@ -11,17 +11,14 @@ export default function SignUp() {
 
   const login = async () => {
     "use server";
-    try {
-      revalidatePath("/signup");
-      clearNewUserCookie();
-    } catch (err) {
-      console.log(err);
-    }
+
+    revalidatePath("/signup");
+    clearNewUserCookie();
   };
 
   return (
     <div className="page-padding h-full flex flex-col">
-      <div className="text-center mt-12 mb-6 relative">
+      <div className="text-center mt-12 mb-6 relative text-neutrals-50">
         {isNewUser && (
           <>
             <Link
