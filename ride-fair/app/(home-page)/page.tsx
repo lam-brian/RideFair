@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { RideLocations } from "../lib/definitions";
+import { CarOption, RideLocations } from "../lib/definitions";
+import { getCarOptions } from "../lib/server-actions";
 import Map from "../ui/home/map";
-import SearchDestination from "../ui/home/search-destination/search-destination";
+import SearchDestination from "../ui/search-destination/search-destination";
 import Tab from "../ui/home/tab";
 import NavBar from "../ui/nav-bar";
+import LoadingOptions from "../ui/loading/loading-options";
 
 enum Stages {
   Search,
-  RideSelection,
+  CarSelection,
   DriverSelection,
 }
 
@@ -19,6 +21,8 @@ export default function HomePage() {
   const [rideLocations, setRideLocations] = useState<RideLocations | undefined>(
     undefined
   );
+  const [carOptions, setCarOptions] = useState<CarOption[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleTabExpand = (state: boolean) => {
     setTabExpanded(state);
@@ -26,9 +30,22 @@ export default function HomePage() {
 
   const handleSearch = async (locations: RideLocations) => {
     try {
-      setRideLocations(locations);
+      setIsLoading(true);
       setTabExpanded(false);
-    } catch (err) {}
+      setRideLocations(locations);
+      const options = await getCarOptions(locations);
+
+      if (!options.length) {
+        throw new Error("No options found.");
+      }
+
+      setCarOptions(options);
+      setStage(Stages.CarSelection);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   let tabContent;
@@ -43,6 +60,8 @@ export default function HomePage() {
         />
       );
       break;
+
+    case Stages.CarSelection:
   }
 
   return (
@@ -53,8 +72,14 @@ export default function HomePage() {
         isExpanded={tabExpanded}
         expandTab={handleTabExpand.bind(null, !tabExpanded)}
       >
-        <div className="px-6 flex-1">{tabContent}</div>
-        <NavBar />
+        {isLoading ? (
+          <LoadingOptions />
+        ) : (
+          <>
+            <div className="px-6 flex-1">{tabContent}</div>
+            <NavBar />
+          </>
+        )}
       </Tab>
     </section>
   );

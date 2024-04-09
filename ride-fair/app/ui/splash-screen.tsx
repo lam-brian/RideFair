@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "../assets/RideFair.svg";
-import Spinner from "./spinner/spinner";
+import Spinner from "./loading/spinner";
 
 export default function SplashScreen() {
   return (

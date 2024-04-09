@@ -3,6 +3,7 @@
 import { useContext, useState } from "react";
 import { Context } from "@/app/lib/store";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function SignUpCompletion() {
   const { userDid } = useContext(Context).web5Instance;
@@ -46,7 +47,9 @@ export default function SignUpCompletion() {
         Read more about DIDs.
       </a>
 
-      <button className="button button-primary mt-auto">Let{"'"}s Ride</button>
+      <Link href={"/"} className="button button-primary mt-auto">
+        Let{"'"}s Ride
+      </Link>
     </div>
   );
 }

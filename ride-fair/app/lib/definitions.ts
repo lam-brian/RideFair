@@ -14,3 +14,20 @@ export type RideLocations = {
   pickup: string;
   dropOff: string;
 };
+
+export type CarOption = {
+  type: string;
+  eta: string;
+  distance: string;
+  price: string;
+};
+
+export type DriverOption = {
+  name: string;
+  image: string;
+  car: string;
+  distance: string;
+  rating: string;
+  completedTrips: number;
+  bestMatch: boolean;
+};
