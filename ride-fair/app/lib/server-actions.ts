@@ -20,6 +20,6 @@ export const getCarOptions: (
   return new Promise((res) => {
     setTimeout(() => {
       res(data.carOptions as CarOption[]);
-    }, 2000);
+    }, 3000);
   });
 };

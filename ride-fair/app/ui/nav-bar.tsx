@@ -12,7 +12,7 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex justify-between items-center w-full h-16 text-neutrals-300 mb-4 border-t border-neutrals-800">
+    <div className="flex justify-between items-center w-full text-neutrals-300 mb-4 border-t border-neutrals-800">
       <Link
         href="/"
         className={`button button-nav${
@@ -32,7 +32,7 @@ export default function NavBar() {
           pathname === "/activity" ? " text-blue-300" : ""
         }`}
       >
-        <CarIcon className="basis-1/2 w-7 translate-y-[20%] scale-110 fill-inherit" />
+        <CarIcon className="basis-1/2 w-7 translate-y-[15%] scale-110 fill-inherit" />
         My Rides
       </Link>
       <Link

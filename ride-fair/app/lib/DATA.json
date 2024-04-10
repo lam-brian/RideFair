@@ -8,11 +8,22 @@
     },
     {
       "type": "Eco-Friendly",
+      "eta": "1:00PM",
       "distance": "3min away",
       "price": "$11.40"
     },
-    { "type": "Carpool", "distance": "3min away", "price": "$5.40" },
-    { "type": "Luxury", "distance": "3min away", "price": "$20.40" }
+    {
+      "type": "Carpool",
+      "eta": "1:00PM",
+      "distance": "3min away",
+      "price": "$5.40"
+    },
+    {
+      "type": "Luxury",
+      "eta": "1:00PM",
+      "distance": "3min away",
+      "price": "$20.40"
+    }
   ],
   "driverOptions": [
     {

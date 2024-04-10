@@ -30,10 +30,8 @@ export default function SearchDestination({
   };
 
   return (
-    <>
-      <h1 className="text-[1.5em] mb-4 font-semibold">
-        Hello, {user?.firstName}
-      </h1>
+    <div className="px-6 flex-1">
+      <h1 className="text-xl mb-4 font-semibold">Hello, {user?.firstName}</h1>
 
       <form onSubmit={handleSearching}>
         {isExpanded && (
@@ -58,12 +56,10 @@ export default function SearchDestination({
           label={"Search Destination"}
         />
 
-        <button className="invisible pointer-events-none opacity-0">
-          Search
-        </button>
+        <button className="hidden pointer-events-none opacity-0">Search</button>
       </form>
 
-      <ul className="flex flex-col mb-auto">
+      <ul className="flex flex-col mb-4">
         <li className="flex-1">
           <button className="w-full flex items-center gap-4">
             <div className="w-9 h-9 rounded-full bg-neutrals-800 flex items-center justify-center">
@@ -73,6 +69,6 @@ export default function SearchDestination({
           </button>
         </li>
       </ul>
-    </>
+    </div>
   );
 }

@@ -10,6 +10,12 @@ export type Web5Instance = {
   userDid: string;
 };
 
+export type Ride = {
+  locations: RideLocations | undefined;
+  car: CarOption | undefined;
+  driver: DriverOption | undefined;
+};
+
 export type RideLocations = {
   pickup: string;
   dropOff: string;

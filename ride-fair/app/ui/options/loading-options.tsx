@@ -13,7 +13,7 @@ const LoadingOptions = () => {
         Finding your ride options
       </h1>
 
-      <ul className="flex flex-col border-t border-neutrals-800 mb-auto px-6 pt-4 gap-8">
+      <ul className="flex flex-col border-t border-neutrals-800 mb-4 px-6 pt-4 gap-8">
         {renderedList}
       </ul>
     </>
