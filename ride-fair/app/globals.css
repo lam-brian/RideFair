@@ -70,4 +70,12 @@ body {
   .button-nav {
     @apply flex-1 flex flex-col justify-center items-center p-0 pt-2 h-full;
   }
+
+  .dot {
+    @apply w-1 h-1 rounded-full bg-neutrals-100;
+  }
+
+  .tab-heading {
+    @apply px-6 text-xl text-neutrals-50 mb-4 font-semibold;
+  }
 }

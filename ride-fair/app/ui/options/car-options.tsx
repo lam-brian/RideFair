@@ -8,12 +8,12 @@ import carLuxury from "../../assets/car-luxury.svg";
 import visaIcon from "../../assets/visa.svg";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-type CarProps = {
+type OptionProps = {
   options: CarOption[];
   onSelectCar: (car: CarOption) => void;
 };
 
-export default function CarOptions({ options, onSelectCar }: CarProps) {
+export default function CarOptions({ options, onSelectCar }: OptionProps) {
   const [selectedCar, setSelectedCar] = useState<CarOption>();
 
   const handleConfirmRide = () => {
@@ -82,14 +82,14 @@ export default function CarOptions({ options, onSelectCar }: CarProps) {
       </ul>
       <div className="flex gap-2 mx-6 mb-4">
         <Image src={visaIcon} alt="VISA" />
-        <p className="flex items-center gap-1">
+        <p className="flex items-center gap-1 text-neutrals-100">
           <span className="dot"></span>
           <span className="dot"></span>
           <span className="dot"></span>
           <span className="dot"></span>
           4321
         </p>
-        <ChevronDownIcon className="w-5 ml-auto" />
+        <ChevronDownIcon className="w-6 ml-auto text-neutrals-300" />
       </div>
       <button
         onClick={handleConfirmRide}

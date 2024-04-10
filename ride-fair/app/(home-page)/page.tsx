@@ -7,13 +7,14 @@ import {
   DriverOption,
   RideLocations,
 } from "../lib/definitions";
-import { getCarOptions } from "../lib/server-actions";
+import { getCarOptions, getDriverOptions } from "../lib/server-actions";
 import Map from "../ui/map/map";
 import SearchDestination from "../ui/map/search-destination";
 import Tab from "../ui/tab";
 import NavBar from "../ui/nav-bar";
 import LoadingOptions from "../ui/options/loading-options";
 import CarOptions from "../ui/options/car-options";
+import DriverOptions from "../ui/options/driver-options";
 import ChevronLeftIcon from "@heroicons/react/24/solid/ChevronLeftIcon";
 
 enum Stages {
@@ -63,8 +64,31 @@ export default function HomePage() {
     }
   };
 
-  const handleSelectCar = (car: CarOption) => {
-    setRide((state) => ({ ...state, car }));
+  const handleSelectCar = async (car: CarOption) => {
+    try {
+      setIsLoading(true);
+      setRide((state) => ({ ...state, car }));
+      const options = await getDriverOptions(car);
+
+      if (!options.length) {
+        throw new Error("no options found.");
+      }
+
+      setDriverOptions(options);
+      setStage(Stages.DriverSelection);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSelectDriver = async (driver: DriverOption) => {
+    try {
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
   };
 
   const handleReset = () => {
@@ -94,6 +118,15 @@ export default function HomePage() {
     case Stages.CarSelection:
       tabContent = (
         <CarOptions options={carOptions} onSelectCar={handleSelectCar} />
+      );
+      break;
+
+    case Stages.DriverSelection:
+      tabContent = (
+        <DriverOptions
+          options={driverOptions}
+          onSelectDriver={handleSelectDriver}
+        />
       );
   }
 

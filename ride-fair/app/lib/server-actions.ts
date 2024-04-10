@@ -1,7 +1,7 @@
 "use server";
 
 import data from "./DATA.json";
-import { RideLocations, CarOption } from "./definitions";
+import { RideLocations, CarOption, DriverOption } from "./definitions";
 
 import { cookies } from "next/headers";
 
@@ -19,7 +19,18 @@ export const getCarOptions: (
 ) => Promise<CarOption[]> = async () => {
   return new Promise((res) => {
     setTimeout(() => {
-      res(data.carOptions as CarOption[]);
+      res(data.carOptions);
+    }, 3000);
+  });
+};
+
+// Mock for now
+export const getDriverOptions: (
+  car: CarOption
+) => Promise<DriverOption[]> = async () => {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res(data.driverOptions);
     }, 3000);
   });
 };
