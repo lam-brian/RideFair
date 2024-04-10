@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { CarOption, RideLocations } from "../lib/definitions";
 import { getCarOptions } from "../lib/server-actions";
-import Map from "../ui/home/map";
-import SearchDestination from "../ui/search-destination/search-destination";
-import Tab from "../ui/home/tab";
+import Map from "../ui/map/map";
+import SearchDestination from "../ui/map/search-destination";
+import Tab from "../ui/tab";
 import NavBar from "../ui/nav-bar";
-import LoadingOptions from "../ui/loading/loading-options";
+import LoadingOptions from "../ui/options/loading-options";
 
 enum Stages {
   Search,

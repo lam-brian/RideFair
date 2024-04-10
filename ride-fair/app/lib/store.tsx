@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { UserData, Web5Instance } from "./definitions";
 import { Web5 } from "@web5/api/browser";
 import { clearNewUserCookie, setNewUserCookie } from "./server-actions";
-import SplashScreen from "../ui/splash-screen";
+import SplashScreen from "../ui/loading/splash-screen";
 
 type StoreType = {
   web5Instance: Web5Instance;

@@ -1,5 +1,5 @@
-import SignUpForm from "@/app/ui/signup/signup-form";
-import SignUpCompletion from "@/app/ui/signup/signup-completion";
+import SignUpForm from "@/app/ui/registration/signup-form";
+import SignUpCompletion from "@/app/ui/registration/signup-completion";
 import Link from "next/link";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { revalidatePath } from "next/cache";
