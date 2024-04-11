@@ -37,3 +37,8 @@ export type DriverOption = {
   completedTrips: number;
   bestMatch: boolean;
 };
+
+export type DriverFilters = {
+  ratingLimit: 0 | 2 | 3 | 4;
+  genderLimit: boolean;
+};

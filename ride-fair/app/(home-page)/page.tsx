@@ -125,6 +125,7 @@ export default function HomePage() {
       tabContent = (
         <DriverOptions
           options={driverOptions}
+          expandTab={handleTabExpand}
           onSelectDriver={handleSelectDriver}
         />
       );

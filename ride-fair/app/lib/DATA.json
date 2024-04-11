@@ -32,6 +32,7 @@
       "car": "Silver BMW X5",
       "distance": "2 mins away",
       "rating": "4.9",
+      "gender": "male",
       "completedTrips": 220,
       "bestMatch": true
     },
@@ -41,6 +42,7 @@
       "car": "White Honda Accord",
       "distance": "7 mins away",
       "rating": "4.9",
+      "gender": "female",
       "completedTrips": 140,
       "bestMatch": false
     },
@@ -49,7 +51,8 @@
       "image": "driver3.png",
       "car": "Red Toyota Camry",
       "distance": "10 mins away",
-      "rating": "4.9",
+      "rating": "3.9",
+      "gender": "male",
       "completedTrips": 100,
       "bestMatch": false
     }
