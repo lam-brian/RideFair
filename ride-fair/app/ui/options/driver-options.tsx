@@ -1,39 +1,24 @@
 import { useState } from "react";
-import { DriverFilters, DriverOption } from "@/app/lib/definitions";
+import { DriverOption } from "@/app/lib/definitions";
 import Image from "next/image";
 import InfoIcon from "@heroicons/react/24/solid/InformationCircleIcon";
-import SortIcon from "@heroicons/react/24/solid/AdjustmentsHorizontalIcon";
 import StarIcon from "@heroicons/react/24/solid/StarIcon";
 
 type OptionProps = {
   options: DriverOption[];
-  expandTab: (state: boolean) => void;
   onSelectDriver: (driver: DriverOption) => void;
-};
-
-const initFilter: DriverFilters = {
-  ratingLimit: 0,
-  genderLimit: false,
 };
 
 export default function DriverOptions({
   options,
-  expandTab,
   onSelectDriver,
 }: OptionProps) {
   const [selectedDriver, setSelectedDriver] = useState<DriverOption>();
-  const [filters, setFilters] = useState(initFilter);
-  const [showFilter, setShowFilter] = useState(false);
 
   const handleRequestDriver = () => {
     if (!selectedDriver) return;
 
     onSelectDriver(selectedDriver);
-  };
-
-  const handleShowFilters = () => {
-    expandTab(true);
-    setShowFilter(true);
   };
 
   const renderedOptions = options.map((driver, i, arr) => {
@@ -59,15 +44,15 @@ export default function DriverOptions({
             />
           </div>
           <div className="flex flex-col items-start gap-1">
-            <p className="flex gap-1 text-neutrals-50 font-semibold h-full">
+            <p className="flex gap-1 text-neutrals-50 font-semibold h-full items-center">
               {driver.name}
-              <span className="flex gap-1 text-neutrals-100 h-full">
+              <span className="flex gap-1 text-neutrals-100 h-full text-sm">
                 <StarIcon className="inline-block w-4 text-neutrals-300" />
                 {driver.rating}
               </span>
             </p>
 
-            <p className="text-neutrals-100">
+            <p className="text-neutrals-100 text-sm">
               {driver.distance}, {driver.car}
             </p>
           </div>
@@ -76,20 +61,12 @@ export default function DriverOptions({
     );
   });
 
-  if (showFilter) {
-    return (
-      <>
-        <h1>Filters</h1>
-      </>
-    );
-  }
-
   return (
     <>
       <h1 className="tab-heading" style={{ marginBottom: "4px" }}>
         Driver Matches
       </h1>
-      <p className="text-neutrals-100 mx-6 mb-4">
+      <p className="text-neutrals-100 mx-6 mb-4 text-sm">
         Based on your preferences, these are your possible drivers that we’ll be
         sharing your data with.
         <span className="ml-1">
@@ -97,16 +74,12 @@ export default function DriverOptions({
         </span>
       </p>
 
-      <ul className="border-t border-neutrals-800 mb-4">
-        <button
-          className="flex items-center gap-2 border border-neutrals-300 rounded-3xl mx-6 my-4 py-1 px-4 text-neutrals-100 transition-all hover:opacity-60"
-          onClick={handleShowFilters}
-        >
-          Filter
-          <SortIcon className="w-4" />
-        </button>
-        {renderedOptions}
-      </ul>
+      <div className="border-t border-neutrals-800 mb-4">
+        <p className="mx-6 my-5 text-sm text-neutrals-50">
+          Drivers currently active
+        </p>
+        <ul>{renderedOptions}</ul>
+      </div>
 
       <button
         onClick={handleRequestDriver}

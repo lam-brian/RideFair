@@ -125,7 +125,6 @@ export default function HomePage() {
       tabContent = (
         <DriverOptions
           options={driverOptions}
-          expandTab={handleTabExpand}
           onSelectDriver={handleSelectDriver}
         />
       );
@@ -139,6 +138,7 @@ export default function HomePage() {
         <button
           onClick={handleReset}
           className="absolute left-5 top-5 h-8 w-8 bg-neutrals-800 rounded-full flex items-center justify-center transition-all hover:opacity-80"
+          aria-label="go back"
         >
           <ChevronLeftIcon className="w-3/5 h-3/5 text-neutrals-100" />
         </button>
