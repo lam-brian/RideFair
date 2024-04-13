@@ -14,6 +14,8 @@ export type Ride = {
   locations: RideLocations | undefined;
   car: CarOption | undefined;
   driver: DriverOption | undefined;
+  review: Review | undefined;
+  total: number | undefined;
 };
 
 export type RideLocations = {
@@ -36,4 +38,10 @@ export type DriverOption = {
   rating: string;
   completedTrips: number;
   bestMatch: boolean;
+};
+
+export type Review = {
+  rating: 1 | 2 | 3 | 4 | 5;
+  review: string;
+  tip: number;
 };

@@ -27,6 +27,7 @@
   ],
   "driverOptions": [
     {
+      "id": "0",
       "name": "Adewale A.",
       "image": "driver1.png",
       "car": "Silver BMW X5",
@@ -37,6 +38,7 @@
       "bestMatch": true
     },
     {
+      "id": "1",
       "name": "Ebony L.",
       "image": "driver2.png",
       "car": "White Honda Accord",
@@ -47,6 +49,7 @@
       "bestMatch": false
     },
     {
+      "id": "2",
       "name": "Daniel B.",
       "image": "driver3.png",
       "car": "Red Toyota Camry",

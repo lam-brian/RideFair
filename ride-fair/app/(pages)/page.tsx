@@ -6,6 +6,7 @@ import {
   CarOption,
   DriverOption,
   RideLocations,
+  Review,
 } from "../lib/definitions";
 import { getCarOptions, getDriverOptions } from "../lib/server-actions";
 import Map from "../ui/map/map";
@@ -15,18 +16,24 @@ import NavBar from "../ui/nav-bar";
 import LoadingOptions from "../ui/options/loading-options";
 import CarOptions from "../ui/options/car-options";
 import DriverOptions from "../ui/options/driver-options";
+import ReviewForm from "../ui/driver-completed/review-form";
+import Completed from "../ui/driver-completed/completed";
 import ChevronLeftIcon from "@heroicons/react/24/solid/ChevronLeftIcon";
 
 enum Stages {
   Search,
   CarSelection,
   DriverSelection,
+  Review,
+  Completion,
 }
 
 const initRideState: Ride = {
   locations: undefined,
   car: undefined,
   driver: undefined,
+  review: undefined,
+  total: undefined,
 };
 
 export default function HomePage() {
@@ -85,10 +92,17 @@ export default function HomePage() {
 
   const handleSelectDriver = async (driver: DriverOption) => {
     try {
+      console.log(driver);
+      setRide((state) => ({ ...state, driver }));
+      setStage(Stages.Review);
     } catch (err) {
       console.log(err);
-    } finally {
     }
+  };
+
+  const handleSubmitReview = (review: Review, total: number) => {
+    setRide((state) => ({ ...state, review, total }));
+    setStage(Stages.Completion);
   };
 
   const handleReset = () => {
@@ -127,6 +141,29 @@ export default function HomePage() {
           options={driverOptions}
           onSelectDriver={handleSelectDriver}
         />
+      );
+      break;
+
+    case Stages.Review:
+      tabContent = (
+        <ReviewForm driver={ride.driver!} onSubmitReview={handleSubmitReview} />
+      );
+      break;
+
+    case Stages.Completion:
+      tabContent = <Completed onReset={handleReset} total={ride.total!} />;
+      break;
+
+    default:
+      tabContent = (
+        <>
+          <SearchDestination
+            isExpanded={tabExpanded}
+            expandTab={handleTabExpand}
+            onSearch={handleSearch}
+          />
+          <NavBar />
+        </>
       );
   }
 
