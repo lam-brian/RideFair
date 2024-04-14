@@ -8,9 +8,9 @@ type CompletedProps = {
 export default function Completed({ total, onReset }: CompletedProps) {
   return (
     <div className="flex-1 flex flex-col py-4 px-6 items-center text-neutrals-100">
-      <CheckCircleIcon className="w-14 text-blue-300 mt-10 mb-5" />
+      <CheckCircleIcon className="w-14 text-blue-300 mb-5" />
       <p className="text-xl mb-4">Payment was successful!</p>
-      <div className="text-center border-b border-neutrals-800 w-full pb-4">
+      <div className="text-center border-b border-neutrals-800 w-full pb-4 mb-4">
         <p className="mb-4">
           Total trip: <strong>${total.toFixed(2)}</strong>
         </p>

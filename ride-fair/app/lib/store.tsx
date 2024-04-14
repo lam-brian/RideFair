@@ -2,7 +2,7 @@
 
 import { useEffect, useState, createContext, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { UserData, Web5Instance } from "./definitions";
+import { Ride, UserData, Web5Instance } from "./definitions";
 import { Web5 } from "@web5/api/browser";
 import { clearNewUserCookie, setNewUserCookie } from "./server-actions";
 import SplashScreen from "../ui/loading/splash-screen";
@@ -10,11 +10,13 @@ import SplashScreen from "../ui/loading/splash-screen";
 type StoreType = {
   web5Instance: Web5Instance;
   user: UserData | null;
+  rideHistory: Ride[];
   userLocation: {
     latitude: GeolocationCoordinates["latitude"];
     longitude: GeolocationCoordinates["longitude"];
   };
   createUser: (user: UserData) => Promise<{ message: string } | void>;
+  addRideToHistory: (ride: Ride) => Promise<{ message: string } | void>;
 };
 
 export const Context = createContext<StoreType>({
@@ -23,11 +25,13 @@ export const Context = createContext<StoreType>({
     userDid: "",
   },
   user: null,
+  rideHistory: [],
   userLocation: {
     latitude: 0,
     longitude: 0,
   },
   createUser: async () => {},
+  addRideToHistory: async () => {},
 });
 
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
@@ -36,6 +40,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     userDid: "",
   });
   const [user, setUser] = useState<StoreType["user"]>(null);
+  const [rideHistory, setRideHistory] = useState<Ride[]>([]);
   const [userLocation, setUserLocation] = useState<StoreType["userLocation"]>({
     latitude: 0,
     longitude: 0,
@@ -84,6 +89,23 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 
       const data = (await records.at(-1)?.data.json()) as UserData;
       setUser(data);
+
+      const { records: rideRecords } = await web5.dwn.records.query({
+        message: {
+          filter: {
+            schema: "http://ridefair.com/rides",
+          },
+        },
+      });
+
+      if (rideRecords) {
+        const rideData = await Promise.all(
+          rideRecords.map((rec) => rec.data.json())
+        );
+
+        setRideHistory(rideData);
+        console.log(rideData);
+      }
     } catch (err) {
       if (err instanceof GeolocationPositionError) {
         alert(err.message);
@@ -95,7 +117,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     init();
@@ -142,13 +164,41 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const addRideToHistory = async (ride: Ride) => {
+    try {
+      const { web5, userDid } = web5Instance;
+
+      const { record } = await (web5 as Web5).dwn.records.create({
+        data: ride,
+        message: {
+          schema: "http://ridefair.com/rides",
+          dataFormat: "application/json",
+        },
+      });
+
+      if (!record) throw new Error("Something went wrong");
+
+      const response = await record?.send(userDid);
+
+      if (response.status.code !== 202) throw new Error("Something went wrong");
+
+      setRideHistory((state) => [...state, ride]);
+      return { message: "User created successfully" };
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  };
+
   return (
     <Context.Provider
       value={{
         web5Instance,
         user,
+        rideHistory,
         userLocation,
         createUser,
+        addRideToHistory,
       }}
     >
       {isLoading ? <SplashScreen /> : children}

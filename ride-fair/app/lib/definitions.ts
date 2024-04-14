@@ -11,11 +11,13 @@ export type Web5Instance = {
 };
 
 export type Ride = {
+  id: number;
   locations: RideLocations | undefined;
   car: CarOption | undefined;
   driver: DriverOption | undefined;
   review: Review | undefined;
   total: number | undefined;
+  timestamp: string | undefined;
 };
 
 export type RideLocations = {

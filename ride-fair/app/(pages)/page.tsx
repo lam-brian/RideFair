@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "../lib/store";
 import {
   Ride,
   CarOption,
@@ -29,14 +30,18 @@ enum Stages {
 }
 
 const initRideState: Ride = {
+  id: Math.random(),
   locations: undefined,
   car: undefined,
   driver: undefined,
   review: undefined,
   total: undefined,
+  timestamp: undefined,
 };
 
 export default function HomePage() {
+  const ctx = useContext(Context);
+
   const [tabExpanded, setTabExpanded] = useState(false);
   const [stage, setStage] = useState(Stages.Search);
   const [ride, setRide] = useState(initRideState);
@@ -101,7 +106,10 @@ export default function HomePage() {
   };
 
   const handleSubmitReview = (review: Review, total: number) => {
-    setRide((state) => ({ ...state, review, total }));
+    const timestamp = new Date().toISOString();
+
+    setRide((state) => ({ ...state, review, total, timestamp }));
+    ctx.addRideToHistory({ ...ride, review, total, timestamp });
     setStage(Stages.Completion);
   };
 
@@ -111,6 +119,7 @@ export default function HomePage() {
     setRideLocations(undefined);
     setCarOptions([]);
     setDriverOptions([]);
+    setTabExpanded(false);
   };
 
   let tabContent;
@@ -171,7 +180,7 @@ export default function HomePage() {
     <section className="w-full h-full relative">
       <Map rideLocations={rideLocations} />
 
-      {stage !== Stages.Search && (
+      {(stage === Stages.CarSelection || stage === Stages.DriverSelection) && (
         <button
           onClick={handleReset}
           className="absolute left-5 top-5 h-8 w-8 bg-neutrals-800 rounded-full flex items-center justify-center transition-all hover:opacity-80"

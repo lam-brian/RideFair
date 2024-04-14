@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
@@ -27,13 +29,13 @@ export default function NavBar() {
         Home
       </Link>
       <Link
-        href="/activity"
+        href="/rides"
         className={`button button-nav${
-          pathname === "/activity" ? " text-blue-300" : ""
+          pathname === "/rides" ? " text-blue-300" : ""
         }`}
       >
         <CarIcon className="basis-1/2 w-7 translate-y-[15%] scale-110 fill-inherit" />
-        My Rides
+        Rides
       </Link>
       <Link
         href="/profile"
