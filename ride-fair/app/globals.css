@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .max-h-mobile {
+    max-height: 50rem;
+  }
+
+  .page-padding {
+    @apply px-6 py-8;
+  }
+
+  .label {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-neutrals-300 transition-all;
+  }
+
+  .label--active {
+    @apply text-xs top-2 translate-y-0;
+  }
+
+  .input {
+    @apply w-full p-4 bg-transparent border border-neutrals-500 text-neutrals-100 rounded-md;
+  }
+
+  .input--active {
+    @apply pt-6 pb-2;
+  }
+
+  .button {
+    @apply font-semibold py-4 px-6 rounded-lg transition ease-out hover:opacity-75;
+  }
+
+  .button-primary {
+    @apply bg-blue-300 text-neutrals-900;
+  }
+
+  .button-disabled {
+    @apply bg-neutrals-800 text-neutrals-700;
+  }
+
+  .button-nav {
+    @apply flex-1 flex flex-col justify-center items-center p-0 pt-2 h-full;
+  }
+
+  .dot {
+    @apply w-1 h-1 rounded-full bg-neutrals-100;
+  }
+
+  .tab-heading {
+    @apply px-6 text-xl text-neutrals-50 mb-4 font-semibold;
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "carOptions": [
+    {
+      "type": "Standard",
+      "eta": "1:00PM",
+      "distance": "3min away",
+      "price": "$10.40"
+    },
+    {
+      "type": "Eco-Friendly",
+      "eta": "1:00PM",
+      "distance": "3min away",
+      "price": "$11.40"
+    },
+    {
+      "type": "Carpool",
+      "eta": "1:00PM",
+      "distance": "3min away",
+      "price": "$5.40"
+    },
+    {
+      "type": "Luxury",
+      "eta": "1:00PM",
+      "distance": "3min away",
+      "price": "$20.40"
+    }
+  ],
+  "driverOptions": [
+    {
+      "id": "0",
+      "name": "Adewale A.",
+      "image": "driver1.png",
+      "car": "Silver BMW X5",
+      "distance": "2 mins away",
+      "rating": "4.9",
+      "gender": "male",
+      "completedTrips": 220,
+      "bestMatch": true
+    },
+    {
+      "id": "1",
+      "name": "Ebony L.",
+      "image": "driver2.png",
+      "car": "White Honda Accord",
+      "distance": "7 mins away",
+      "rating": "4.9",
+      "gender": "female",
+      "completedTrips": 140,
+      "bestMatch": false
+    },
+    {
+      "id": "2",
+      "name": "Daniel B.",
+      "image": "driver3.png",
+      "car": "Red Toyota Camry",
+      "distance": "10 mins away",
+      "rating": "4.9",
+      "gender": "male",
+      "completedTrips": 100,
+      "bestMatch": false
+    }
+  ]
+}
