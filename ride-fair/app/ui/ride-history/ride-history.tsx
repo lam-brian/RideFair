@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { Context } from "../lib/store";
+import { Context } from "../../lib/store";
 
 export default function RideHistory() {
   const { rideHistory } = useContext(Context);
@@ -20,11 +20,11 @@ export default function RideHistory() {
     return (
       <li
         key={ride.id}
-        className="flex justify-between gap-x-4 gap-y-1 flex-wrap bg-neutrals-800 text-neutrals-50 w-full mb-8 py-3 px-4 rounded-lg"
+        className="flex justify-between gap-x-4 gap-y-1 flex-wrap bg-neutrals-800 text-neutrals-50 w-full py-3 px-4 rounded-lg"
       >
         <p>{ride.locations?.dropOff}</p>
         <p>${ride.total?.toFixed(2)}</p>
-        <p className="text-neutrals-100 basis-full text-sm flex items-center gap-2">
+        <p className="text-neutrals-100 basis-full text-sm flex items-center gap-1.5">
           {date} <span className="dot inline-block" /> {time}{" "}
         </p>
       </li>
@@ -39,5 +39,5 @@ export default function RideHistory() {
     );
   }
 
-  return <ul>{renderedRides}</ul>;
+  return <ul className="flex flex-col gap-6">{renderedRides}</ul>;
 }

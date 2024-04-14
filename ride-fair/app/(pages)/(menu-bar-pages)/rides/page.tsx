@@ -1,4 +1,4 @@
-import RideHistory from "@/app/ui/ride-history";
+import RideHistory from "@/app/ui/ride-history/ride-history";
 
 export default function MyRidesPage() {
   return (
