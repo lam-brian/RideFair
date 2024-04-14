@@ -3,7 +3,7 @@
 import { useEffect, useState, createContext, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Ride, UserData, Web5Instance } from "./definitions";
-import { Web5 } from "@web5/api";
+import { Web5 } from "@web5/api/browser";
 import { clearNewUserCookie, setNewUserCookie } from "./server-actions";
 import SplashScreen from "../ui/loading/splash-screen";
 
