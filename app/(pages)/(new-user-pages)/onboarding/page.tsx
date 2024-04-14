@@ -5,7 +5,7 @@ import moneyImg from "@/app/assets/money.svg";
 import pointerImg from "@/app/assets/pointer-mouse.svg";
 
 //Feature Array
-export const FEATURE_CONCEPTS = [
+const FEATURE_CONCEPTS = [
   {
     image: safeguardImg,
     title: "Decentralized ride-sharing.",
