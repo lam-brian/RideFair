@@ -1,4 +1,4 @@
-import { useState, useContext, FormEvent } from "react";
+import { useState, useContext, FormEvent, useId } from "react";
 import { Context } from "@/app/lib/store";
 import { RideLocations } from "@/app/lib/definitions";
 import SearchInput from "./search-input";
@@ -18,6 +18,10 @@ export default function SearchDestination({
   const { user } = useContext(Context);
   const [pickupLocation, setPickupLocation] = useState("My Location");
   const [dropOffLocation, setDropOffLocation] = useState("");
+  const [timer, setTimer] = useState<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  );
+  const sessionId = useId();
 
   const handleSearching = (e: FormEvent) => {
     e.preventDefault();
@@ -27,6 +31,23 @@ export default function SearchDestination({
       pickup: pickupLocation.trim(),
       dropOff: dropOffLocation.trim(),
     });
+  };
+
+  const handleInput = async (e: InputEvent) => {
+    try {
+      const res = await fetch(
+        "https://api.mapbox.com/search/searchbox/v1/suggest?" +
+          new URLSearchParams({
+            q: (e.target as HTMLInputElement).value,
+            access_token: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_KEY as string,
+            session_token: sessionId,
+          })
+      );
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
