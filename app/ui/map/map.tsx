@@ -45,7 +45,7 @@ const Map = ({ rideLocations }: MapProps) => {
   const setMapMarkers = useCallback(
     async (map: mapboxgl.Map) => {
       if (!rideLocations) return;
-      
+
       try {
         const { pickup, dropOff } = rideLocations;
         const [pickupCoords, dropOffCoords] = await Promise.all(

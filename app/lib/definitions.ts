@@ -47,3 +47,14 @@ export type Review = {
   review: string;
   tip: number;
 };
+
+export type SearchSuggestions = {
+  for?: "pickup" | "dropOff";
+  suggestions: Suggestion[];
+};
+
+export type Suggestion = {
+  name: string;
+  address: string;
+  id: string;
+};

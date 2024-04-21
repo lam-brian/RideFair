@@ -104,7 +104,6 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
         );
 
         setRideHistory(rideData);
-        console.log(rideData);
       }
     } catch (err) {
       if (err instanceof GeolocationPositionError) {
