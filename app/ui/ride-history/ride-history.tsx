@@ -20,10 +20,14 @@ export default function RideHistory() {
     return (
       <li
         key={ride.id}
-        className="flex justify-between gap-x-4 gap-y-1 flex-wrap bg-neutrals-800 text-neutrals-50 w-full py-3 px-4 rounded-lg"
+        className="flex justify-between flex-col gap-1 bg-neutrals-800 text-neutrals-50 w-full py-3 px-4 rounded-lg"
       >
-        <p>{ride.locations?.dropOff}</p>
-        <p>${ride.total?.toFixed(2)}</p>
+        <div className="flex gap-4 w-full">
+          <p className="text-ellipsis text-nowrap overflow-hidden">
+            {ride.locations?.dropOff}
+          </p>
+          <p>${ride.total?.toFixed(2)}</p>
+        </div>
         <p className="text-neutrals-100 basis-full text-sm flex items-center gap-1.5">
           {date} <span className="dot inline-block" /> {time}{" "}
         </p>
