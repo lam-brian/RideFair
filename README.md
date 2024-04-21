@@ -49,7 +49,7 @@ What sets RideFair apart is the unique ability for riders to freely share associ
 ##⚙️ How we built it
 **Design Process:** We started by defining a problem and performing primary research by gathering user research through an online survey. Then, we conducted market research by analyzing competitors in the ridesharing space. After identifying rider and driver pain points and ideating solutions, we created wireframes, a brand style, and prototyped the PWA application using Figma.
 
-**Development Process:** We created our app using React.js for the front-end, Mapbox for the map, and Web5 to handle our data. Because of how powerful web5 is, there was really no need to incorporate a backend to handle data.
+**Development Process:** We created our app using Next.js for the front-end, Mapbox for the map, and Web5 to handle our data. Because of how powerful web5 is, there was really no need to incorporate a backend to handle data.
 
 ## 💪 Challenges we ran into
 
