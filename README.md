@@ -4,7 +4,7 @@
 
 This project was submitted to the Web5: Building the Decentralized Web Hackathon [here](https://devpost.com/software/ridefair).
 
-You can also try out the [live demo](https://ride-fair.netlify.app/) or run it locally.
+You can also try out the [live demo](https://ride-fair.vercel.app/) or run it locally.
 
 1. clone the repository
 2. run `npm i`
