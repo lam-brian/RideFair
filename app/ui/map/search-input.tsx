@@ -26,6 +26,7 @@ const SearchInput = ({
         id={"search-" + label.split(" ").join("")}
         className="bg-transparent w-full"
         placeholder={label}
+        autoComplete="off"
       />
     </div>
   );
