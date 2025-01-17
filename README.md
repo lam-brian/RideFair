@@ -4,7 +4,7 @@
 
 This project was submitted to the Web5: Building the Decentralized Web Hackathon [here](https://devpost.com/software/ridefair).
 
-You can also try out the [live demo](https://ride-fair.vercel.app/) or run it locally.
+Follow these steps to run it locally.
 If there are any issues with the initial load, try clearing the browser history.
 
 1. clone the repository
